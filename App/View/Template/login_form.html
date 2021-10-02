@@ -1,0 +1,11 @@
+<form method="post" id="login_form" action="login/validate_login">
+  <input type="email" name="email" value="Your email">
+  <input type="password" name="password">
+  <input type="button" onclick="login_action()" value="Login">
+  <input type="button" onclick="register()" value="Register">
+</form>
+<script type="text/javascript">
+  function login_action(){
+    document.getElementById('login_form').submit();
+  }
+</script>

@@ -1,5 +1,7 @@
 <?php
 
-require 'Application/app.php';
+require 'config.php';
 
-$app =  new app();
+session_start();
+$router =  new router();
+
