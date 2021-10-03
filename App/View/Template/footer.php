@@ -1,3 +1,4 @@
+<!-- FOOTER -->
 </div>
 <div id="footer" style="position: fixed; bottom: 5px">
     <hr>

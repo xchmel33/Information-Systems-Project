@@ -5,7 +5,9 @@ class home extends controller
 {
     function index(){
         $data['title'] = 'home';
-        $this->view('Template/header.php',$data);
-        $this->view('Template/footer.php',$data);
+        $data['stylesheet'] = PATH_VIEW.'Stylesheet/master.css';
+        $this->view(HEADER,$data);
+        echo $this->loadHtmlTemplate('home_page.html');
+        $this->view(FOOTER,$data);
     }
 }

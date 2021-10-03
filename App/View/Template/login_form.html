@@ -1,11 +1,43 @@
-<form method="post" id="login_form" action="login/validate_login">
-  <input type="email" name="email" value="Your email">
-  <input type="password" name="password">
-  <input type="button" onclick="login_action()" value="Login">
-  <input type="button" onclick="register()" value="Register">
-</form>
-<script type="text/javascript">
-  function login_action(){
-    document.getElementById('login_form').submit();
-  }
-</script>
+<div id="login_form_wrapper">
+  <form style="display: none" method="post" id="login_form" action="login/validate_login">
+    <select>
+      <option value="admin">Admin</option>
+      <option value="bidder">Bidder</option>
+    </select>
+    <label for="email">Your email:</label>
+    <input id="email" type="email" name="email" value="@" style="text-align: center">
+    <label for="password">Password:</label>
+    <input id="password" type="password" name="password">
+    <input type="submit" value="Login">
+  </form>
+  <form style="display: none" id="reg_form" method="post" action="error">
+    <label for="reg_name">Your username:</label>
+    <input id="reg_name" type="text">
+    <label for="reg_email">Your email:</label>
+    <input id="reg_email" type="email">
+    <label for="reg_pass">Your new password:</label>
+    <input id="reg_pass" type="password">
+    <input type="submit" value="Register">
+  </form>
+  <div id="yes/no">
+    <button id="yes">Yes</button>
+    <button id="no">No</button>
+  </div>
+
+  <script type="text/javascript">
+    window.onload = function (){
+      document.getElementById('yes').onclick = function (){
+        document.getElementById('login_form').style.display = 'flex';
+        document.getElementById('yes/no').style.display = 'none';
+        document.getElementById('desc').innerHTML = 'Login to your account';
+      }
+      document.getElementById('no').onclick = function (){
+        document.getElementById('reg_form').style.display = 'flex';
+        document.getElementById('yes/no').style.display = 'none';
+        document.getElementById('desc').innerHTML = 'Register new account';
+      }
+    }
+  </script>
+</div>
+
+

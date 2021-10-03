@@ -1,0 +1,17 @@
+#login_form_wrapper, #home{
+    text-align: center;
+    margin: 200px 20vw;
+    width: 60vw;
+}
+#header{
+    margin: 100px;
+}
+#header_nav {
+    margin: 50px;
+}
+#login_form, #reg_form{
+    width: 10vw;
+    margin: 20px 5vw;
+    flex-direction: column;
+    flex-wrap: wrap;
+}

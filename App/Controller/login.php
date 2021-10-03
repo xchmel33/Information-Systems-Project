@@ -5,10 +5,11 @@ class login extends controller
 {
     function index(){
         $data['title'] = 'login';
-        $this->view('Template/header.php',$data);
+        $data['desc'] = 'Do you already have an account?';
+        $data['stylesheet'] = PATH_VIEW.'Stylesheet/master.css';
+        $this->view(HEADER,$data);
         echo $this->loadHtmlTemplate('login_form.html');
-        $this->view('error.php',$data);
-        $this->view('Template/footer.php',$data);
+        $this->view(FOOTER,$data);
     }
 
     function validate_login(){

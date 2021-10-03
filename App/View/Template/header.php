@@ -1,18 +1,19 @@
+<!-- HEADER -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Auctions - <?=$data['title']?></title>
+    <title>Web Bids - <?=$data['title']?></title>
 </head>
+<link rel="stylesheet" type="text/css" href="<?=$data['stylesheet']?>">
 <body>
 <div id="header">
-    <h1 style="text-align: center">Wellcome to <?=$data['title']?> page</h1>
     <ul id="header_nav" style="text-align: center; list-style-type: none">
-        <li><a>1</a></li>
-        <li><a>2</a></li>
-        <li><a>3</a></li>
-        <li><a>4</a></li>
-        <li><a>5</a></li>
+        <li><a>HOME</a></li>
+        <li><a>LIVE BIDS</a></li>
+        <li><a>CREATE BID</a></li>
+        <li><a>STATISTICS</a></li>
     </ul>
+    <h1 id="desc" style="text-align: center"><?=$data['desc']?></h1>
 </div>
 <div id="main">
