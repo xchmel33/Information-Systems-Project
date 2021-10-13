@@ -1,12 +1,10 @@
 <?php
-
+// Stylesheet/master.css
 
 class login extends controller
 {
     function index(){
         $data['title'] = 'login';
-        $data['desc'] = 'Do you already have an account?';
-        $data['stylesheet'] = PATH_VIEW.'Stylesheet/master.css';
         $this->view(HEADER,$data);
         echo $this->loadHtmlTemplate('login_form.html');
         $this->view(FOOTER,$data);
@@ -26,4 +24,4 @@ class login extends controller
 
         echo 'you entered:<br>'.$email.'<br>'.$password;
     }
-}
+}?>
