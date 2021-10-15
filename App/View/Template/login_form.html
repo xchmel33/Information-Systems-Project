@@ -1,4 +1,118 @@
-<div id="login_form_wrapper">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!---*************welcome this is my simple empty strap by John Niro Yumang ******************* -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<title>Aukcie</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<style>
+  body {background-color:#eee;}
+  .container-fluid {padding:50px;}
+  .container{background-color:white;padding:50px;   }
+  #title{font-family: 'Lobster', cursive;;}
+
+</style>
+<head>
+  <script src="jquery/jquery.min.js"></script>
+  <!---- jquery link local dont forget to place this in first than other script or link or may not work ---->
+
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <!---- boostrap.min link local ----->
+
+  <link rel="stylesheet" href="css/style.css">
+  <!---- boostrap.min link local ----->
+
+  <script src="js/bootstrap.min.js"></script>
+  <!---- Boostrap js link local ----->
+
+  <link rel="icon" href="images/icon.png" type="image/x-icon" />
+  <!---- Icon link local ----->
+
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+  <!---- Font awesom link local ----->
+</head>
+<body>
+<div class="container-fluid">
+  <div class="container">
+    <h2 class="text-center" id="title">Aukcie </h2>
+    <hr>
+    <div class="row">
+      <div class="col-md-5">
+        <form role="form" method="post" action="register.php">
+          <fieldset>
+            <p class="text-uppercase pull-center"> SIGN UP.</p>
+            <div class="form-group">
+              <input type="login" name="login" id="login" class="form-control input-lg" placeholder="login">
+            </div>
+
+            <div class="form-group">
+              <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address">
+            </div>
+            <div class="form-group">
+              <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password">
+            </div>
+            <div class="form-group">
+              <input type="password" name="password2" id="password2" class="form-control input-lg" placeholder="Password2">
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input">
+                By Clicking register you're agree to our policy & terms
+              </label>
+            </div>
+            <div>
+              <input type="submit" class="btn btn-lg btn-primary   value="Register">
+            </div>
+          </fieldset>
+        </form>
+      </div>
+
+      <div class="col-md-2">
+        <!-------null------>
+      </div>
+
+      <div class="col-md-5">
+        <form role="form">
+          <fieldset>
+            <p class="text-uppercase"> Login using your account: </p>
+
+            <div class="form-group">
+              <input type="login" name="login" id="login" class="form-control input-lg" placeholder="login">
+            </div>
+            <div class="form-group">
+              <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password">
+            </div>
+            <div>
+              <input type="submit" class="btn btn-md" value="Sign In">
+            </div>
+
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+  <p class="text-center">
+    <small id="passwordHelpInline" class="text-muted"> Developer:<a href="http://www.psau.edu.ph/"> Pampanga state agricultural university ?</a> BS. Information and technology students @2017 Credits: <a href="https://v4-alpha.getbootstrap.com/">boostrap v4.</a></small>
+  </p>
+</div>
+
+
+</body>
+
+
+</html>
+
+
+
+
+<!--<div id="login_form_wrapper">
   <form style="display: none" method="post" id="login_form" action="login/validate_login">
     <select>
       <option value="admin">Admin</option>
@@ -22,22 +136,169 @@
   <div id="yes/no">
     <button id="yes">Yes</button>
     <button id="no">No</button>
+  </div>-->
+<!--<div class="form">
+  <div class="title">Welcome</div>
+  <div class="subtitle">Let's create your account!</div>
+  <div class="input-container ic1">
+    <input id="firstname" class="input" type="text" placeholder=" " />
+    <div class="cut"></div>
+    <label for="firstname" class="placeholder">First name</label>
   </div>
-
-  <script type="text/javascript">
-    window.onload = function (){
-      document.getElementById('yes').onclick = function (){
-        document.getElementById('login_form').style.display = 'flex';
-        document.getElementById('yes/no').style.display = 'none';
-        document.getElementById('desc').innerHTML = 'Login to your account';
-      }
-      document.getElementById('no').onclick = function (){
-        document.getElementById('reg_form').style.display = 'flex';
-        document.getElementById('yes/no').style.display = 'none';
-        document.getElementById('desc').innerHTML = 'Register new account';
-      }
-    }
-  </script>
+  <div class="input-container ic2">
+    <input id="lastname" class="input" type="text" placeholder=" " />
+    <div class="cut"></div>
+    <label for="lastname" class="placeholder">Last name</label>
+  </div>
+  <div class="input-container ic2">
+    <input id="email" class="input" type="text" placeholder=" " />
+    <div class="cut cut-short"></div>
+    <label for="email" class="placeholder">Email</>
+  </div>
+  <button type="text" class="submit">submit</button>
 </div>
+
+<style>
+  body {
+    align-items: center;
+    background-color: blue;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  .form {
+    background-color: #15172b;
+    border-radius: 20px;
+    box-sizing: border-box;
+    height: 500px;
+    padding: 20px;
+    width: 320px;
+  }
+
+  .title {
+    color: #eee;
+    font-family: sans-serif;
+    font-size: 36px;
+    font-weight: 600;
+    margin-top: 30px;
+  }
+
+  .subtitle {
+    color: #eee;
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 10px;
+  }
+
+  .input-container {
+    height: 50px;
+    position: relative;
+    width: 100%;
+  }
+
+  .ic1 {
+    margin-top: 40px;
+  }
+
+  .ic2 {
+    margin-top: 30px;
+  }
+
+  .input {
+    background-color: #303245;
+    border-radius: 12px;
+    border: 0;
+    box-sizing: border-box;
+    color: #eee;
+    font-size: 18px;
+    height: 100%;
+    outline: 0;
+    padding: 4px 20px 0;
+    width: 100%;
+  }
+
+  .cut {
+    background-color: #15172b;
+    border-radius: 10px;
+    height: 20px;
+    left: 20px;
+    position: absolute;
+    top: -20px;
+    transform: translateY(0);
+    transition: transform 200ms;
+    width: 76px;
+  }
+
+  .cut-short {
+    width: 50px;
+  }
+
+  .input:focus ~ .cut,
+  .input:not(:placeholder-shown) ~ .cut {
+    transform: translateY(8px);
+  }
+
+  .placeholder {
+    color: #65657b;
+    font-family: sans-serif;
+    left: 20px;
+    line-height: 14px;
+    pointer-events: none;
+    position: absolute;
+    transform-origin: 0 50%;
+    transition: transform 200ms, color 200ms;
+    top: 20px;
+  }
+
+  .input:focus ~ .placeholder,
+  .input:not(:placeholder-shown) ~ .placeholder {
+    transform: translateY(-30px) translateX(10px) scale(0.75);
+  }
+
+  .input:not(:placeholder-shown) ~ .placeholder {
+    color: #808097;
+  }
+
+  .input:focus ~ .placeholder {
+    color: #dc2f55;
+  }
+
+  .submit {
+    background-color: #08d;
+    border-radius: 12px;
+    border: 0;
+    box-sizing: border-box;
+    color: #eee;
+    cursor: pointer;
+    font-size: 18px;
+    height: 50px;
+    margin-top: 38px;
+  // outline: 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  .submit:active {
+    background-color: white;
+  }
+  </style>
+-->
+<!--<script type="text/javascript">
+  window.onload = function (){
+    document.getElementById('yes').onclick = function (){
+      document.getElementById('login_form').style.display = 'flex';
+      document.getElementById('yes/no').style.display = 'none';
+      document.getElementById('desc').innerHTML = 'Login to your account';
+    }
+    document.getElementById('no').onclick = function (){
+      document.getElementById('reg_form').style.display = 'flex';
+      document.getElementById('yes/no').style.display = 'none';
+      document.getElementById('desc').innerHTML = 'Register new account';
+    }
+  }
+</script>
+</div>-->
 
 
