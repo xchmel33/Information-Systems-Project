@@ -3,7 +3,4 @@
 
 class model
 {
-    protected function query(){
-
-    }
 }
