@@ -10,7 +10,23 @@ class login extends controller
         $this->view(FOOTER,$data);
     }
 
-    function validate_login(){
+    function register(){
+        $email = '';
+        $password = '';
+        $username = '';
+
+        if (isset($_POST['username'])){
+            $username = $_POST['username'];
+        }if (isset($_POST['email'])){
+            $email = $_POST['email'];
+        }
+        if (isset($_POST['password'])){
+            $password = $_POST['password'];
+        }
+    }
+
+
+    function validate(){
 
         $email = '';
         $password = '';

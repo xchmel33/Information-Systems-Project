@@ -9,7 +9,7 @@ class database extends model
     {
         $servername = "localhost";
         $username = "root";
-        $password = "bids";
+        $password = "";
         $db_name = "IIS_bids";
 
         $this->connect = new mysqli($servername, $username, $password, $db_name);
@@ -18,7 +18,7 @@ class database extends model
         }
     }
 
-    protected function select_id($table,$id, $rows = '*'){
+    protected function selectById($table,$id, $rows = '*'){
         $sql = $this->connect->query('SELECT '.$rows.' FROM '.$table.' WHERE '.$table.'.id='.$id);
         return $sql->num_rows;
     }
