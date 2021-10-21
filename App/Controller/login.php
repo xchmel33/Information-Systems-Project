@@ -40,4 +40,4 @@ class login extends controller
 
         echo 'you entered:<br>'.$email.'<br>'.$password;
     }
-}?>
+}

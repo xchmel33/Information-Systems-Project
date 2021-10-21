@@ -1,7 +1,7 @@
 <?php
 
 
-class database extends model
+class database
 {
     protected $connect;
 
@@ -13,8 +13,8 @@ class database extends model
         $db_name = "IIS_bids";
 
         $this->connect = new mysqli($servername, $username, $password, $db_name);
-        if ($connect->connect_error) {
-            die('Database connection error: ' . $connect->connect_errno);
+        if ($this->connect->connect_error) {
+            die('Database connection error: ' . $this->connect->connect_errno);
         }
     }
 
