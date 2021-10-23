@@ -19,6 +19,9 @@
             <div class="form-group">
               <input type="password" name="password2" id="r-password2" class="form-control input-lg" placeholder="Password again">
             </div>
+            <div class="form-group">
+              <input type="text" name="address" id="r-address" class="form-control input-lg" placeholder="Address">
+            </div>
             <div class="form-check">
               <label class="form-check-label">
                 <input type="checkbox" class="form-check-input">
@@ -26,7 +29,7 @@
               </label>
             </div>
             <div>
-              <input type="submit" class="btn btn-lg btn-primary   value="Register">
+              <input type="button" class="btn btn-lg btn-primary"  onclick="attempt_register()" value="Register">
             </div>
           </fieldset>
         </form>
@@ -55,6 +58,14 @@
           function attempt_login(result = ''){
             if (result === '') {
               validate_login(document.getElementById('login').value, document.getElementById('password').value, attempt_login);
+            }
+            else{
+              console.log(result);
+            }
+          }
+          function attempt_register(result = ''){
+            if (result === '') {
+              register(document.getElementById('r-login').value, document.getElementById('r-password').value, document.getElementById('r-email').value, document.getElementById('r-address').value,  attempt_register);
             }
             else{
               console.log(result);

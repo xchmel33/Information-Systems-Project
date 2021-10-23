@@ -6,16 +6,33 @@ document.getElementsByTagName('head')[0].appendChild(script);
 
 function validate_login(email,password,callback) {
     $.ajax({
-            url: 'login/validate',
-            type: 'post',
-            dataType: 'html',
-            data: {
-                email: email,
-                password: password
-            },
-            success: function (response){
-                callback(response);
-            }
+        url: 'login/validate',
+        type: 'post',
+        dataType: 'html',
+        data: {
+            email: email,
+            password: password
+        },
+        success: function (response){
+            callback(response);
+        }
+    });
+}
+
+function register(username,password,email,address,callback){
+    $.ajax({
+        url: 'login/register',
+        type: 'post',
+        dataType: 'html',
+        data: {
+            email: email,
+            password: password,
+            username: username,
+            address: address
+        },
+        success: function (response){
+            callback(response);
+        }
     });
 }
 
