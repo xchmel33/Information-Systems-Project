@@ -19,7 +19,7 @@ function validate_login(email,password,callback) {
     });
 }
 
-function register(username,password,email,address,callback){
+function validate_register(username,password,email,address,callback){
     $.ajax({
         url: 'login/register',
         type: 'post',

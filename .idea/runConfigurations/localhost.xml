@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="localhost" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" browser="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" server_name="localhost" start_url="/IIS">
+  <configuration default="false" name="localhost" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" browser="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" server_name="Local" start_url="/IIS">
     <method v="2">
       <option name="FtpUpload" enabled="true">
         <server_id>4d1ac33c-3a5f-467b-ada5-d3c88bb679bc</server_id>

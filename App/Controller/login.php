@@ -10,7 +10,7 @@ class login extends controller
         $this->view(FOOTER,$data);
     }
 
-    function register(){
+    function validate_register(){
         $email = '';
         $password = '';
         $username = '';
@@ -40,24 +40,18 @@ class login extends controller
     }
 
 
-    function validate(){
+    function validate_login(){
 
-        $email = '';
-        $password = '';
-
-        if (isset($_POST['email'])){
-            $email = $_POST['email'];
+        if(!isset($_POST['email']) || !isset($_POST['password'])){
+            echo 'At least one field is empty!';
+            return;
         }
-        if (isset($_POST['password'])){
-            $password = $_POST['password'];
-        }
-
-        $query = $this->db->selectByX('user','email',$email);
+        $query = $this->db->selectByRowName('user','email',$_POST['email']);
         var_dump($query);
         if ($query == []){
-            echo 'user with email: '.$email.' does not exist!';
+            echo 'user with email: '.$_POST['email'].' does not exist!';
         }
-        else if($password == $query[0][2]){
+        else if($_POST['password'] == $query[0][2]){
             echo 'login successful!';
         }
         else{
