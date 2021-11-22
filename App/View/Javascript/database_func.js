@@ -6,7 +6,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
 
 function validate_login(email,password,callback) {
     $.ajax({
-        url: 'login/validate',
+        url: 'login/validate_login',
         type: 'post',
         dataType: 'html',
         data: {
@@ -19,16 +19,17 @@ function validate_login(email,password,callback) {
     });
 }
 
-function validate_register(username,password,email,address,callback){
+function validate_register(username,password,email,country,city,callback){
     $.ajax({
-        url: 'login/register',
+        url: 'login/validate_register',
         type: 'post',
         dataType: 'html',
         data: {
             email: email,
             password: password,
             username: username,
-            address: address
+            country: country,
+            city: city,
         },
         success: function (response){
             callback(response);

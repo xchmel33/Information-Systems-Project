@@ -141,11 +141,11 @@ class database
             $sql .= "'".$column_value."',";
         }
         $sql = substr($sql,0,-1).")";
-        return $this->query($sql)->fetchAll();
+        return $this->query($sql)->query;
     }
 
-    public function selectByRowName($table,$x_name,$x_value, $rows = '*'){
-        $result = $this->query('SELECT '.$rows.' FROM '.$table.' WHERE '.$x_name.'=\''.$x_value.'\'');
+    public function selectByColumnName($table,$col_name,$col_value, $rows = '*'){
+        $result = $this->query('SELECT '.$rows.' FROM '.$table.' WHERE '.$col_name.'=\''.$col_value.'\'');
         return $result->fetchAll();
     }
 }

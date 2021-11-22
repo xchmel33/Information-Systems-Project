@@ -14,7 +14,8 @@ class login extends controller
         $email = '';
         $password = '';
         $username = '';
-        $address = '';
+        $country = '';
+        $city = '';
 
         if (isset($_POST['username'])){
             $username = $_POST['username'];
@@ -25,18 +26,30 @@ class login extends controller
         if (isset($_POST['password'])) {
             $password = $_POST['password'];
         }
-        if (isset($_POST['address'])){
-            $address = $_POST['address'];
+        if (isset($_POST['country'])){
+            $country = $_POST['country'];
         }
-        $column_names = ['username','password','email','address'];
-        $column_values = [$username,$password,$email,$address];
+        if (isset($_POST['city'])){
+            $city = $_POST['city'];
+        }
 
-        if($this->db->insert('user',$column_names,$column_values) == 1){
-            echo 'successfully registered!';
+        // check if email exist
+        if ($this->db->selectByColumnName('user','email',$email) != []){
+            echo 'User with email \''.$email.'\' already exist!';
+            return;
         }
-        else{
-            echo 'registration failed!';
+
+        // check if username exits
+        if($this->db->selectByColumnName('user','username',$username) != []){
+            echo 'User with username \''.$username.'\' already exist!';
+            return;
         }
+
+        // insert
+        $column_names = ['username','password','email','country','city'];
+        $column_values = [$username,$password,$email,$country,$city];
+        $this->db->insert('user',$column_names,$column_values);
+        echo '1'.$username;
     }
 
 
@@ -46,13 +59,13 @@ class login extends controller
             echo 'At least one field is empty!';
             return;
         }
-        $query = $this->db->selectByRowName('user','email',$_POST['email']);
-        var_dump($query);
+        $query = $this->db->selectByColumnName('user','email',$_POST['email']);
+//        var_dump($query);
         if ($query == []){
-            echo 'user with email: '.$_POST['email'].' does not exist!';
+            echo 'User with email '.$_POST['email'].' does not exist!';
         }
-        else if($_POST['password'] == $query[0][2]){
-            echo 'login successful!';
+        else if($_POST['password'] == $query[0]['password']){
+            echo '1'.$query[0]['username'];
         }
         else{
             echo 'Invalid password!';
