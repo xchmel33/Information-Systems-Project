@@ -54,10 +54,32 @@
                     </div>
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
+
+                <!-- login status -->
                 <ul class="nav navbar-nav navbar-right">
-                    <li><p class="navbar-text"><a href="login">Login</a></p></li>
-                    <li><p class="navbar-text"><a href="login">Register</a></p></li>
+                    <li><p class="navbar-text">
+                    <?php
+                        if (isset($_SESSION['username']) && $_SESSION['valid']){
+                            echo $_SESSION['username'];
+                        }
+                        else{
+                            echo '<a id="l/r" href="login">Login/register</a>';
+                        }
+                    ?>
+                    </p></li>
+                    <?php
+                    if (isset($_SESSION['username']) && $_SESSION['valid']){
+                        echo '<li><p class="navbar-text"><button onclick="confirm_logout()">Logout</button></p></li>';
+                    }
+                    ?>
                 </ul>
+                <script type="text/javascript">
+                    function confirm_logout(){
+                        if(confirm("Are you sure want to log out?")){
+                            logout();
+                        }
+                    }
+                </script>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>

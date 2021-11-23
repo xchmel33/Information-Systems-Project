@@ -36,6 +36,16 @@ function validate_register(username,password,email,country,city,callback){
         }
     });
 }
+function logout(){
+    $.ajax({
+        url: 'login/logout',
+        type: 'post',
+        dataType: 'html',
+        success: function (response){
+            document.location = 'home';
+        }
+    });
+}
 
 
 

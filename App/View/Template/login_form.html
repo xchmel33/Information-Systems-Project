@@ -83,9 +83,13 @@
             // callback success
             else if(result[0] === '1'){
               document.getElementById('login_form').innerHTML = '<h1>Wellcome back user '+result.substr(1)+'!</h1>';
+              document.getElementById('l/r').innerHTML = '';
+              setTimeout(function (){
+                document.location = 'home';
+              },2500);
             }
 
-            // display error message
+            // display pageError message
             else{
               document.getElementById('l-error').innerHTML = result;
             }
@@ -129,9 +133,13 @@
             // callback success
             else if(result[0] === '1'){
               document.getElementById('login_form').innerHTML = '<h1>Thank you for registering user '+result.substr(1)+'!</h1>';
+              document.getElementById('l/r').innerHTML = '';
+              setTimeout(function (){
+                document.location = 'home';
+              },2500);
             }
 
-            // display error message
+            // display pageError message
             else{
               document.getElementById('r-error').innerHTML = result;
             }

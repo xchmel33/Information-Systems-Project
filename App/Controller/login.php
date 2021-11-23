@@ -6,7 +6,15 @@ class login extends controller
     function index(){
         $data['title'] = 'login';
         $this->view(HEADER,$data);
-        echo $this->loadHtmlTemplate('login_form.html');
+
+        //check if user not already logged in
+        if (isset($_SESSION['username']) && $_SESSION['valid']){
+            $error = 'Already logged in as '.$_SESSION['username'].'!';
+            echo '<h1>'.$error.'</h1>';
+        }
+        else{
+            echo $this->loadHtmlTemplate('login_form.html');
+        }
         $this->view(FOOTER,$data);
     }
 
@@ -50,6 +58,7 @@ class login extends controller
         $column_values = [$username,$password,$email,$country,$city];
         $this->db->insert('user',$column_names,$column_values);
         echo '1'.$username;
+        $this->start_login_session($username);
     }
 
 
@@ -66,9 +75,26 @@ class login extends controller
         }
         else if($_POST['password'] == $query[0]['password']){
             echo '1'.$query[0]['username'];
+            $this->start_login_session($query[0]['username']);
         }
         else{
             echo 'Invalid password!';
         }
+    }
+
+    protected function start_login_session($username){
+        session_abort();
+        session_start();
+        $_SESSION['valid'] = true;
+        $_SESSION['timeout'] = time();
+        $_SESSION['username'] = $username;
+    }
+
+    function logout(){
+        session_abort();
+        session_start();
+        unset($_SESSION['username']);
+        unset($_SESSION['password']);
+        $_SESSION['valid'] = false;
     }
 }
