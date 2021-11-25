@@ -55,6 +55,17 @@
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
 
+                <!-- Set current loaded page nav link to active  -->
+                <!-- <script type="text/javascript">
+                    let nav_items = document.getElementById('main-nav').getElementsByTagName('li');
+                    for (let i = 0; i < nav_items.length; i++){
+                        console.log(i);
+                        if (i === <?=$data['activeLI']?>){
+                            nav_items[i].className = "active";
+                        }
+                    }
+                </script> -->
+
                 <!-- login status -->
                 <ul class="nav navbar-nav navbar-right">
                     <li><p class="navbar-text">
