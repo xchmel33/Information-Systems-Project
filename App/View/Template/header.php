@@ -2,7 +2,7 @@
 <html>
 <head>
     <!--   -->
-    <title><?=$data['title']?></title>
+    <title>WebBids - <?=$data['title']?></title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="<?=$data['stylesheet']?>">
     <link rel="stylesheet" href="App/View/Stylesheet/header.css">
