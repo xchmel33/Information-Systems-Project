@@ -4,14 +4,15 @@ script.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(script);
 
 
-function validate_login(email,password,callback) {
+function validate_login(user_type,email,password,callback) {
     $.ajax({
         url: 'login/validate_login',
         type: 'post',
         dataType: 'html',
         data: {
             email: email,
-            password: password
+            password: password,
+            user_type: user_type
         },
         success: function (response){
             callback(response);

@@ -49,6 +49,14 @@
             <p class="text-uppercase"> Login using your account: </p>
             <p style="color: red" id="l-error"></p>
             <div class="form-group">
+              <label>Login as: </label>
+              <select id="user_type">
+                <option value="licidator">Licidator</option>
+                <option value="user">Uzivatel</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+            <div class="form-group">
               <input type="login" name="login" id="login" class="form-control input-lg" placeholder="Username">
             </div>
             <div class="form-group">
@@ -65,6 +73,8 @@
             let email = document.getElementById('login').value;
             let password = document.getElementById('password').value;
             let error = document.getElementById('l-error');
+            let select = document.getElementById('user_type');
+            let user_type = select.options[select.selectedIndex].text;
 
             if (email === ''){
               error = 'Enter your email!';
@@ -77,7 +87,7 @@
 
             // first call
             if (result === '') {
-              validate_login(email, password, attempt_login);
+              validate_login(user_type,email, password, attempt_login);
             }
 
             // callback success
