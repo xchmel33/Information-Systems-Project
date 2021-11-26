@@ -2,7 +2,7 @@
 function getPageIndex($title){
     switch ($title){
         case 'home': return 0;
-        case 'create_action': return 1;
+        case 'create_auction': return 1;
         case 'buy_items': return 2;
         case 'my_auctions': return 3;
         case 'licidator': return 4;

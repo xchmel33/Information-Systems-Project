@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" type="text/css" href="App/View/Stylesheet/master.css">
-</head>
-
 <div id="create_form" class="container-fluid">
     <div class="container">
         <h2 class="text-center" id="title">My auctions page</h2>
@@ -14,7 +6,6 @@
             <div class="col-md-5">
                 <div class="info">
                     <img class ="pic" src="img/1.jpg">
-
                     <ul>
                         <li><h3>GUCCI BOTY</h3></li>
                         <li><h3>CURRENT HIGHEST BID</h3>You</li>
@@ -34,10 +25,6 @@
 
                     </ul>
                 </div>
-
-
-
-
             </div>
         </div>
     </div>
