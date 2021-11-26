@@ -1,7 +1,7 @@
 <?php
 
 
-class error extends controller
+class siteError extends controller
 {
     function index(){
         $data['title'] = ' 404 ';

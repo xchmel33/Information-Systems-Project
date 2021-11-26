@@ -19,7 +19,7 @@ require 'App/functions.php';
 
 class router
 {
-    protected $controller = 'error';
+    protected $controller = 'siteError';
     protected $method = 'index';
     protected $params = [];
 
@@ -51,7 +51,10 @@ class router
             }
         }
 
-        $this->params = array_values($url);
+        // clean params for 404 error
+        $this->params = (get_class($this->controller) == 'siteError') ? []:array_values($url);
+
+        // call class inside controller
         call_user_func_array([$this->controller,$this->method],$this->params);
     }
 

@@ -8,6 +8,18 @@
 class controller
 {
     /**
+     * @var database
+     */
+    protected $db;
+
+    /**
+     * Initialize database
+     */
+    public function __construct(){
+        $this->db = new database();
+    }
+
+    /**
      * Html template loader
      *
      * Enables to load html file from App/View/Template
