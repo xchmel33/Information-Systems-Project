@@ -20,6 +20,7 @@
             <a class="navbar-brand" href="#">Login dropdown</a>
         </div>
 
+<<<<<<< Updated upstream
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
@@ -89,6 +90,35 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+=======
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>0
+                    <li><a href="#">Create Auction</a></li>
+                    <li><a href="#">Buy items</a></li>
+                    <li><a href="#">My auctions</a></li>
+                    <li><a href="#">Liciterator page</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Aktiva</a></li>
+                            <li><a href="#">Majetok</a></li>
+                            <li><a href="#">Zboží</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+>>>>>>> Stashed changes
 
 <style>
     #login-dp{
