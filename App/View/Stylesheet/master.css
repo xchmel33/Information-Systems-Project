@@ -19,15 +19,15 @@ html {
     scroll-behavior: smooth;
 }
 
-@viewport{
-    zoom: 1;
-    width: extend-to-zoom;
-}
+/*@viewport{*/
+/*    zoom: 1;*/
+/*    width: extend-to-zoom;*/
+/*}*/
 
-@-ms-viewport{
-    zoom: 1;
-    width: extend-to-zoom;
-}
+/*@-ms-viewport{*/
+/*    zoom: 1;*/
+/*    width: extend-to-zoom;*/
+/*}*/
 body{
     min-width: 500px;
     max-width: 1140px;
