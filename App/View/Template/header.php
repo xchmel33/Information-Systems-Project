@@ -55,6 +55,21 @@
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
 
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>0
+                        <li><a href="#">Create Auction</a></li>
+                        <li><a href="#">Buy items</a></li>
+                        <li><a href="#">My auctions</a></li>
+                        <li><a href="#">Liciterator page</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Aktiva</a></li>
+                                <li><a href="#">Majetok</a></li>
+                                <li><a href="#">Zboží</a></li>
+
                 <!-- Set current loaded page nav link to active  -->
                 <!-- <script type="text/javascript">
                     let nav_items = document.getElementById('main-nav').getElementsByTagName('li');
