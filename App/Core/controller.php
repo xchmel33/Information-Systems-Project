@@ -48,8 +48,8 @@ class controller
      * @param array $data
      */
     protected function view($view, $data = []){
-        if(file_exists(PATH_VIEW.$view)) {
-            include PATH_VIEW.$view;
+        if(file_exists(PATH_TEMPLATE.$view)) {
+            include PATH_TEMPLATE.$view;
         }
     }
 

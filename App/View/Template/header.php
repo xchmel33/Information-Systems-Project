@@ -1,3 +1,17 @@
+<?php
+function getPageIndex($title){
+    switch ($title){
+        case 'home': return 0;
+        case 'create_action': return 1;
+        case 'buy_items': return 2;
+        case 'my_auctions': return 3;
+        case 'licidator': return 4;
+        case 'admin': return 5;
+        case 'categories': return 6;
+    }
+}
+?>
+
 <!-- HEADER -->
 <html>
 <head>
@@ -35,12 +49,22 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>0
-                    <li><a href="#">Create Auction</a></li>
-                    <li><a href="#">Buy items</a></li>
-                    <li><a href="#">My auctions</a></li>
-                    <li><a href="#">Liciterator page</a></li>
+                <ul id="main-nav" class="nav navbar-nav">
+                    <li><a href="home">Home</a></li>0
+                    <li><a href="create_auction">Create Auction</a></li>
+                    <li><a href="buy">Buy items</a></li>
+                    <?php
+                        if (isset($_SESSION['username'])){
+                            echo '<li><a href="my_auctions">My auctions</a></li>';
+                            echo $_SESSION['user_role'];
+                            if ($_SESSION['user_role'] == 'licidator' || $_SESSION['user_role'] == 'admin'){
+                                echo '<li><a href="licidator">Licidator</a></li>';
+                                if ($_SESSION['user_role'] == 'admin'){
+                                    echo '<li><a href="admin">Admin</a></li>';
+                                }
+                            }
+                        }
+                    ?>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
@@ -52,32 +76,26 @@
                 </ul>
 
                 <!-- Set current loaded page nav link to active  -->
-                <!-- <script type="text/javascript">
+                <script type="text/javascript">
                     let nav_items = document.getElementById('main-nav').getElementsByTagName('li');
                     for (let i = 0; i < nav_items.length; i++){
                         console.log(i);
-                        if (i === <?=$data['activeLI']?>){
+                        if (i === <?php echo getPageIndex($data['title'])?>){
                             nav_items[i].className = "active";
                         }
                     }
-                </script> -->
+                </script>
 
                 <!-- login status -->
                 <ul class="nav navbar-nav navbar-right">
-                    <li><p class="navbar-text">
                     <?php
-                        if (isset($_SESSION['username']) && $_SESSION['valid']){
-                            echo $_SESSION['username'];
+                        if (isset($_SESSION['username'])){
+                            echo '<li><p class="navbar-text">'.$_SESSION['username'].'</p></li>';
+                            echo '<li><p class="navbar-text"><button onclick="confirm_logout()">Logout</button></p></li>';
                         }
                         else{
-                            echo '<a id="l/r" href="login">Login/register</a>';
+                            echo '<li><p class="navbar-text"><a id="l/r" href="login">Login/register</a></p></li>';
                         }
-                    ?>
-                    </p></li>
-                    <?php
-                    if (isset($_SESSION['username']) && $_SESSION['valid']){
-                        echo '<li><p class="navbar-text"><button onclick="confirm_logout()">Logout</button></p></li>';
-                    }
                     ?>
                 </ul>
                 <script type="text/javascript">

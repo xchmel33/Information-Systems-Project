@@ -53,7 +53,7 @@ class database
         return $this;
     }
 
-    public function fetchAll($callback = null) {
+    public function fetchAll() {
         $params = [];
         $row = [];
         $meta = $this->query->result_metadata();
@@ -67,12 +67,7 @@ class database
             foreach ($row as $key => $val) {
                 $r[$key] = $val;
             }
-            if ($callback != null && is_callable($callback)) {
-                $value = call_user_func($callback, $r);
-                if ($value == 'break') break;
-            } else {
-                $result[] = $r;
-            }
+            $result[] = $r;
         }
         $this->query->close();
         $this->query_closed = TRUE;
@@ -132,6 +127,11 @@ class database
         if (count($column_names) != count($column_values)){
             return false;
         }
+        //check if table exist
+        if ($this->query("SHOW TABLES LIKE '%".$table."%'")->fetchArray() == []){
+            return false;
+        }
+
         $sql = "INSERT INTO ".$table."(";
         foreach ($column_names as $column_name){
             $sql .= $column_name.",";
@@ -141,11 +141,16 @@ class database
             $sql .= "'".$column_value."',";
         }
         $sql = substr($sql,0,-1).")";
-        return $this->query($sql)->query;
+        $this->query($sql)->query;
+        return true;
     }
 
     public function selectByColumnName($table,$col_name,$col_value, $rows = '*'){
         $result = $this->query('SELECT '.$rows.' FROM '.$table.' WHERE '.$col_name.'=\''.$col_value.'\'');
+        return $result->fetchAll();
+    }
+    public function selectAll($table, $rows = '*'){
+        $result = $this->query('SELECT '.$rows.' FROM '.$table);
         return $result->fetchAll();
     }
 }
