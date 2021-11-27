@@ -81,6 +81,15 @@ CREATE TABLE `auction` (
     PRIMARY KEY (auction_id)
 );
 
+DROP TABLE IF EXISTS `auction_user`;
+CREATE TABLE `auction_user` (
+    `auction` int(255),
+    `user_id` int(255),
+    `owner` int(1),
+    FOREIGN KEY (auction) REFERENCES auction(auction_id),
+    FOREIGN KEY (user_id) REFERENCES user(user_id)
+)
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

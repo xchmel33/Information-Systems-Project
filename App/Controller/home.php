@@ -13,4 +13,13 @@ class home extends controller
         $this->view('home_page.php',$data);
         $this->view(FOOTER,$data);
     }
+
+    function place_bid(){
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: ../login");
+        } else {
+            $this->db->insert("auction_user",["auction","user_id","owner"],[$_POST['bid'],$_SESSION['user_id'],0]);
+        }
+
+    }
 }

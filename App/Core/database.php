@@ -161,6 +161,7 @@ class database
             $sql .= "'".$column_value."',";
         }
         $sql = substr($sql,0,-1).")";
+
         return (bool)$this->query($sql);
     }
 
