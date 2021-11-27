@@ -5,7 +5,7 @@ class database
 {
     protected $connection;
     protected $query;
-    protected $show_errors = TRUE;
+    protected $show_errors = FALSE;
     protected $query_closed = TRUE;
     public $query_count = 0;
 
@@ -44,11 +44,13 @@ class database
             $this->query->execute();
             if ($this->query->errno) {
                 $this->error('Unable to process MySQL query (check your params) - ' . $this->query->error);
+                return false;
             }
             $this->query_closed = FALSE;
             $this->query_count++;
         } else {
             $this->error('Unable to prepare MySQL statement (check your syntax) - ' . $this->connection->error);
+            return false;
         }
         return $this;
     }
@@ -123,6 +125,24 @@ class database
         return 'b';
     }
 
+    public function update($table, $column_names, $column_values,$col_name, $col_value){
+        if (count($column_names) != count($column_values)){
+            return false;
+        }
+        //check if table exist
+        if ($this->query("SHOW TABLES LIKE '%".$table."%'")->fetchArray() == []){
+            return false;
+        }
+
+        $sql = "UPDATE ".$table." SET ";
+        for ($i = 0; $i < count($column_names); $i++){
+            $sql .= $column_names[$i]." = '".$column_values[$i]."', ";
+        }
+        $sql = substr($sql,0,-2);
+        $sql .= " WHERE ".$col_name." = ".$col_value;
+        return (bool)$this->query($sql);
+    }
+
     public function insert($table, $column_names, $column_values){
         if (count($column_names) != count($column_values)){
             return false;
@@ -141,8 +161,11 @@ class database
             $sql .= "'".$column_value."',";
         }
         $sql = substr($sql,0,-1).")";
-        $this->query($sql)->query;
-        return true;
+        return (bool)$this->query($sql);
+    }
+
+    public function deleteRecord($table,$col_name,$col_value){
+        return (bool)$this->query("DELETE FROM ".$table." WHERE ".$col_name." = '".$col_value."'");
     }
 
     public function selectByColumnName($table,$col_name,$col_value, $rows = '*'){
