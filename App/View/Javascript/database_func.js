@@ -47,5 +47,17 @@ function logout(){
     });
 }
 
+function upload_image(fd,callback) {
+    $.ajax({
+        url: 'create_auction/upload_image',
+        type: 'post',
+        data: fd,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            callback(response);
+        },
+    });
+}
 
 

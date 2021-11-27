@@ -26,5 +26,6 @@ class admin extends controller
         $this->view(HEADER,$data);
         $this->view('admin.php',$data);
         $this->view(FOOTER,$data);
+
     }
 }

@@ -50,13 +50,13 @@ function getPageIndex($title){
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul id="main-nav" class="nav navbar-nav">
-                    <li><a href="home">Home</a></li>0
+                    <li><a href="home">Home</a></li>
                     <li><a href="create_auction">Create Auction</a></li>
                     <li><a href="buy">Buy items</a></li>
                     <?php
                         if (isset($_SESSION['username'])){
                             echo '<li><a href="my_auctions">My auctions</a></li>';
-                            echo $_SESSION['user_role'];
+                            echo $_SESSION['user_id'];
                             if ($_SESSION['user_role'] == 'licidator' || $_SESSION['user_role'] == 'admin'){
                                 echo '<li><a href="licidator">Licidator</a></li>';
                                 if ($_SESSION['user_role'] == 'admin'){

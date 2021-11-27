@@ -4,10 +4,17 @@
         <hr>
         <div class="row">
             <div class="col-md-5">
-                <form role="form" method="post" action="create_auction/create_auction">
+                <form role="form" method="post" action="create_auction/create_a">
                     <fieldset>
                         <p class="text-uppercase pull-center">Detaily produktu: </p>
                         <p style="color: red" id="r-error"></p>
+                        <div class="form-group">
+                            Select image to upload to auction:
+                            <input type="file" id="fileToUpload">
+                            <input type="button" onclick="upload()" value="upload">
+                            <div id="append_here"></div>
+                            <input hidden name="image_location" id="image_location">
+                        </div>
                         <div class="form-group">
                             <input type="text" name="name" class="form-control input-lg" placeholder="Názov produktu*" required>
                         </div>
@@ -46,6 +53,28 @@
                         </div>
                     </fieldset>
                 </form>
+                <script type="text/javascript">
+                    function upload(result = '') {
+                        if (result === '') {
+                            let fd = new FormData();
+                            let files = document.getElementById('fileToUpload').files;
+                            if (files.length > 0) {
+                                fd.append('file', files[0]);
+                                upload_image(fd, upload);
+                            }
+                        }
+                        else if (result === '0'){
+                            document.getElementById('append_here').innerHTML = "Image upload failed!";
+                        }
+                        else{
+                            console.log(result);
+                            document.getElementById('append_here').innerHTML =
+                                '<img src="'+result+'" alt="error" style="width: 200px;">';
+                            document.getElementById('image_location'). value = result;
+                        }
+
+                    }
+                </script>
             </div>
         </div>
     </div>

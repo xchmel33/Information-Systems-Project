@@ -177,4 +177,8 @@ class database
         $result = $this->query('SELECT '.$rows.' FROM '.$table);
         return $result->fetchAll();
     }
+    public function getAutoIncrement($table){
+        $sql = 'SELECT `AUTO_INCREMENT` FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = \''.DB_NAME.'\' AND   TABLE_NAME   = \''.$table.'\'';
+        return $this->query($sql)->fetchAll()[0]['AUTO_INCREMENT'];
+    }
 }

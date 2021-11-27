@@ -58,7 +58,8 @@ class login extends controller
         $column_values = [$username,$password,$email,$country,$city,'reg_user'];
         $this->db->insert('user',$column_names,$column_values);
         echo '1'.$username;
-        $this->start_login_session($username,'reg_user');
+        $user_id = $this->db->getAutoIncrement('user')-1;
+        $this->start_login_session($username,'reg_user',$user_id);
     }
 
 
@@ -74,20 +75,21 @@ class login extends controller
         }
         if($_POST['password'] == $query[0]['password']){
             echo '1'.$query[0]['username'];
-            $this->start_login_session($query[0]['username'],$query[0]['user_role']);
+            $this->start_login_session($query[0]['username'],$query[0]['user_role'],$query[0]['user_id']);
         }
         else{
             echo 'Invalid username or password!';
         }
     }
 
-    protected function start_login_session($username,$user_role){
+    protected function start_login_session($username,$user_role,$user_id){
         session_abort();
         session_start();
         $_SESSION['valid'] = true;
         $_SESSION['timeout'] = time();
         $_SESSION['username'] = $username;
         $_SESSION['user_role'] = $user_role;
+        $_SESSION['user_id'] = $user_id;
     }
 
     function logout(){
