@@ -4,33 +4,36 @@
         <hr>
         <div class="row">
             <div class="col-md-5">
-                <form role="form" method="post" action="">
+                <form role="form" method="post" action="create_auction/create_auction">
                     <fieldset>
                         <p class="text-uppercase pull-center">Detaily produktu: </p>
                         <p style="color: red" id="r-error"></p>
                         <div class="form-group">
-                            <input type="nazov_produktu"  id="r-nazov_produktu" class="form-control input-lg" placeholder="Názov produktu*">
+                            <input type="text" name="name" class="form-control input-lg" placeholder="Názov produktu*" required>
                         </div>
                         <div class="form-group">
-                            <input type="starting_price"  id="r-starting_price" class="form-control input-lg" placeholder="0*">
+                            <input type="number" step="0.01" name="starting_price" class="form-control input-lg" placeholder="0*" required>
                         </div>
                         <div class="form-group">
-                            <input type="time_limit"  id="r-time_limit" class="form-control input-lg" placeholder="00:00:00*">
+                            <input type="date"  name="date_limit" class="form-control input-lg" placeholder="00:00:00*">
                         </div>
                         <div class="form-group">
-                            <input type="popis"  id="r-popis" class="form-control input-lg" placeholder="Popis*">
+                            <input type="time"  name="time_limit" class="form-control input-lg" placeholder="00:00:00*">
+                        </div>
+                        <div class="form-group">
+                            <input type="text"  name="description" class="form-control input-lg" placeholder="Popis*" required>
                         </div>
 
                         <label>Typ aukcie: </label>
-                        <select id="typ_aukcie">
-                            <option value="nabidkova">Nabídková aukce</option>
-                            <option value="poptavka">Poptávková aukce</option>
+                        <select name="typ_aukcie">
+                            <option value="0">Nabídková aukce</option>
+                            <option value="1">Poptávková aukce</option>
                         </select>
                         <div>  </div>
                         <label>Pravidla aukce: </label>
-                        <select id="pravidla_aukcie">
-                            <option value="otvorena">Otvorená aukce</option>
-                            <option value="uzavreta">Uzavretá aukce</option>
+                        <select name="pravidla_aukcie" >
+                            <option value="0">Otvorená aukce</option>
+                            <option value="1">Uzavretá aukce</option>
                         </select>
                         <div class="form-check">
                             <label class="form-check-label">
@@ -39,44 +42,15 @@
                             </label>
                         </div>
                         <div>
-                            <input type="button" class="btn btn-lg btn-primary"  onclick="attempt_register()" value="SUBMIT AUCTION">
+                            <input type="submit" class="btn btn-lg btn-primary"  onclick="" value="SUBMIT AUCTION">
                         </div>
-                        <form action="upload.php" method="post" enctype="multipart/form-data">
-                            Select image to upload:
-                            <input type="file" name="fileToUpload" id="fileToUpload">
-                            <input type="submit" value="Upload Image" name="submit">
                     </fieldset>
                 </form>
             </div>
-
-
-            </fieldset>
-            </form>
-
-
-
-
         </div>
     </div>
 </div>
-</div>
+<script>
 
-<?php
-$target_dir = "uploads/";
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-$uploadOk = 1;
-$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-// Check if image file is a actual image or fake image
-if(isset($_POST["submit"])) {
-    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-    if($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
-        $uploadOk = 1;
-    } else {
-        echo "File is not an image.";
-        $uploadOk = 0;
-    }
-}
-?>
+</script>
 
-<?php

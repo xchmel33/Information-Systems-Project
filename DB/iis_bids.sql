@@ -1,3 +1,4 @@
+
 -- phpMyAdmin SQL Dump
 -- version 4.8.5
 -- https://www.phpmyadmin.net/
@@ -66,6 +67,18 @@ ALTER TABLE `user`
 ALTER TABLE `user`
   MODIFY `user_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
+
+DROP TABLE IF EXISTS `auction`;
+CREATE TABLE `auction` (
+    `auction_id` int(255) NOT NULL AUTO_INCREMENT,
+    `item_name` varchar(255) NOT NULL,
+    `auction_type` int(1) NOT NULL,
+    `auction_rule` int(1) NOT NULL,
+    `auction_description` varchar(255),
+    `start_price` FLOAT NOT NULL,
+    `end_time` DATETIME NOT NULL,
+    PRIMARY KEY (auction_id)
+);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
