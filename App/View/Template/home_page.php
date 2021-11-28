@@ -3,7 +3,7 @@
             <h1>CURRENT AUCTIONS</h1>
         <?php
         foreach ($data['auction_array'] as $auction){
-            if ($auction['status'] != 'approved') continue;
+            if ($auction['status'] != 'started') continue;
             echo '
             <div class="info">
                 <img class ="pic" src="'.$auction['image'].'">
@@ -12,9 +12,9 @@
                     <li><h4>START PRICE: '.$auction["start_price"].' KČ</h4></li>
                     <li><h4>HIGHEST BID: '.$auction["highest_bid"].' KČ</h4></li>
                     <li><h4>STATUS: <span style="color: '.getColor($auction["status"]).'">'.$auction["status"].'</span></h4></li>
-                    <li><h4>ENDS: '.$auction["end_time"].' <p>TIMELEFT: <span id="timer'.$auction["auction_id"].'"></span></p></h4></li>
+                    <li><h4>TIMELEFT: <span id="timer'.$auction["auction_id"].'"></span></h4></li>
                     <script type="text/javascript">getTimer(\''.$auction["end_time"].'\',document.getElementById("timer'.$auction["auction_id"].'"))</script>
-                    <form method="post" action="my_auctions">
+                    <form method="post" action="home/join">
                         <input hidden name="auction_id" value="'.$auction["auction_id"].'">
                         <button type="submit">JOIN AUCTION</button>
                     </form>

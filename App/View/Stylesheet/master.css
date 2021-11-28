@@ -1,6 +1,12 @@
 .pic{
     width: 10%;
 }
+.short{
+    width: 50px;
+}
+.user_join_wrapper{
+    border: 1px solid gray;
+}
 .basic {
     float: left;
     justify-content: space-between;

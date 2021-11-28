@@ -178,7 +178,7 @@ class database
     }
     public function selectAll($tables,$col = '', $rows = '*'){
         if(is_array($tables)){
-            $result = $this->query(join($tables,$col));
+            $result = $this->query($this->join($tables,$col));
         }
         else{
             $result = $this->query('SELECT '.$rows.' FROM '.$tables);

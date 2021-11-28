@@ -61,7 +61,6 @@ function upload_image(fd,callback) {
 }
 function getTimer(end_time,element){
     let x =setInterval(function () {
-        console.log(end_time);
         let countDownDate = new Date(end_time).getTime();
         let now = new Date().getTime();
         let distance = countDownDate - now;

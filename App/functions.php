@@ -13,7 +13,7 @@ function printArray($array){
 function getColor($status){
     switch ($status){
         case 'created': return 'aqua';
-        case 'approved': return 'green';
+        case 'started': return 'green';
         case 'disapproved': return 'red';
         case 'finished': return 'yellow';
         case 'canceled': return 'orange';
