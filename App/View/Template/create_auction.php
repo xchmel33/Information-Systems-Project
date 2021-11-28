@@ -1,6 +1,6 @@
 <div id="create_form" class="container-fluid">
     <div class="container">
-        <h2 class="text-center" id="title">Web bids create page</h2>
+        <h2 class="text-center" id="title">Create new auction</h2>
         <hr>
         <div class="row">
             <div class="col-md-5">
@@ -9,8 +9,8 @@
                         <p class="text-uppercase pull-center">Detaily produktu: </p>
                         <p style="color: red" id="r-error"></p>
                         <div class="form-group">
-                            Select image to upload to auction:
-                            <input type="file" id="fileToUpload">
+                            <h4>Select image to upload to auction:</h4>
+                            <input type="file" id="fileToUpload" required>
                             <input type="button" onclick="upload()" value="upload">
                             <div id="append_here"></div>
                             <input hidden name="image_location" id="image_location">
@@ -21,6 +21,7 @@
                         <div class="form-group">
                             <input type="number" step="0.01" name="starting_price" class="form-control input-lg" placeholder="0*" required>
                         </div>
+                        <h4>Timeleft:</h4>
                         <div class="form-group">
                             <input type="date"  name="date_limit" class="form-control input-lg" placeholder="00:00:00*">
                         </div>

@@ -3,11 +3,9 @@ function getPageIndex($title){
     switch ($title){
         case 'home': return 0;
         case 'create_auction': return 1;
-        case 'buy_items': return 2;
-        case 'my_auctions': return 3;
-        case 'licidator': return 4;
-        case 'admin': return 5;
-        case 'categories': return 6;
+        case 'my_auctions': return 2;
+        case 'licidator': return 3;
+        case 'admin': return 4;
     }
 }
 ?>
@@ -52,7 +50,7 @@ function getPageIndex($title){
                 <ul id="main-nav" class="nav navbar-nav">
                     <li><a href="home">Home</a></li>
                     <li><a href="create_auction">Create Auction</a></li>
-                    <li><a href="buy">Buy items</a></li>
+<!--                    <li><a href="buy">Buy items</a></li>-->
                     <?php
                         if (isset($_SESSION['username'])){
                             echo '<li><a href="my_auctions">My auctions</a></li>';
@@ -65,14 +63,14 @@ function getPageIndex($title){
                             }
                         }
                     ?>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Aktiva</a></li>
-                            <li><a href="#">Majetok</a></li>
-                            <li><a href="#">Zboží</a></li>
-                        </ul>
-                    </li>
+<!--                    <li class="dropdown">-->
+<!--                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories <span class="caret"></span></a>-->
+<!--                        <ul class="dropdown-menu" role="menu">-->
+<!--                            <li><a href="#">Aktiva</a></li>-->
+<!--                            <li><a href="#">Majetok</a></li>-->
+<!--                            <li><a href="#">Zboží</a></li>-->
+<!--                        </ul>-->
+<!--                    </li>-->
                 </ul>
 
                 <!-- Set current loaded page nav link to active  -->

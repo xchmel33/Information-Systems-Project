@@ -8,6 +8,7 @@ class home extends controller
         $data['stylesheet'] = PATH_STYLESHEET.'master.css';
         //  $data['action_array'][0..n]['column names']
         $data['auction_array'] = $this->db->selectAll('auction');
+        $data['auction_user'] = $this->db->selectAll(['auction_user','auction'],'auction_id');
 
         $this->view(HEADER,$data);
         $this->view('home_page.php',$data);

@@ -11,6 +11,7 @@ class controller
      * @var database
      */
     protected $db;
+    protected $model;
 
     /**
      * Initialize database
@@ -65,8 +66,8 @@ class controller
 
         $model = $model.'php';
         if (file_exists(PATH_MODEL.$model)){
-            include PATH_MODEL.$model;
-            return $model();
+            require PATH_MODEL.$model;
+            $this->model = $model;
         }
         else{
             return false;

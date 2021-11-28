@@ -1,11 +1,23 @@
 .pic{
-    width: 10%;
+    width: 20vh;
 }
 .short{
     width: 50px;
 }
 .user_join_wrapper{
     border: 1px solid gray;
+}
+.action_ul{
+    list-style-type: none;
+    width: 30vw;
+}
+.action_li{
+    list-style-type: none;
+}
+.auction_wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
 }
 .basic {
     float: left;
@@ -18,7 +30,8 @@
     margin: 0 auto;
 }
 .info{
-    border: 3px solid black;
+    border: 2px solid grey;
+    width: 30vw;
 }
 .info h3{
     min-width: 150px;

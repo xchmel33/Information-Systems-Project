@@ -2,8 +2,17 @@
     <section id="current-auctions">
             <h1>CURRENT AUCTIONS</h1>
         <?php
+
         foreach ($data['auction_array'] as $auction){
-            if ($auction['status'] != 'started') continue;
+            if ($auction['status'] != 'started' && $auction['status'] != 'paused') continue;
+            if ($auction['owner_id'] == $_SESSION['user_id']) continue;
+            $res = false;
+            foreach ($data['auction_user'] as $au){
+                if ($au['user_id'] == $_SESSION['user_id']) {
+                    $res = true;
+                }
+            }
+            if ($res) continue;
             echo '
             <div class="info">
                 <img class ="pic" src="'.$auction['image'].'">
