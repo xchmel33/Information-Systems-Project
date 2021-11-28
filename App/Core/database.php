@@ -168,14 +168,22 @@ class database
     public function deleteRecord($table,$col_name,$col_value){
         return (bool)$this->query("DELETE FROM ".$table." WHERE ".$col_name." = '".$col_value."'");
     }
+    public function join($tables,$column,$rows = '*'){
+        return "SELECT ".$rows." FROM ".$tables[0]." INNER JOIN ".$tables[1]." ON ".$tables[0].".".$column."=".$tables[1].'.'.$column.";";
+    }
 
     public function selectByColumnName($table,$col_name,$col_value, $rows = '*'){
         $result = $this->query('SELECT '.$rows.' FROM '.$table.' WHERE '.$col_name.'=\''.$col_value.'\'');
         return $result->fetchAll();
     }
-    public function selectAll($table, $rows = '*'){
-        $result = $this->query('SELECT '.$rows.' FROM '.$table);
-        return $result->fetchAll();
+    public function selectAll($tables,$col = '', $rows = '*'){
+        if(is_array($tables)){
+            $result = $this->query(join($tables,$col));
+        }
+        else{
+            $result = $this->query('SELECT '.$rows.' FROM '.$tables);
+        }
+        return ($result) ? $result->fetchAll():false;
     }
     public function getAutoIncrement($table){
         $sql = 'SELECT `AUTO_INCREMENT` FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = \''.DB_NAME.'\' AND   TABLE_NAME   = \''.$table.'\'';

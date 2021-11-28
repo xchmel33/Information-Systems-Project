@@ -1,3 +1,6 @@
+.pic{
+    width: 10%;
+}
 .basic {
     float: left;
     justify-content: space-between;

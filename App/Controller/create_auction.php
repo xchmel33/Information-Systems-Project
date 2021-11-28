@@ -12,9 +12,9 @@ class create_auction extends controller
     function create_a(){
         $limit = DateTime::createFromFormat('Y-m-d H:i',$_POST["date_limit"] . ' ' . $_POST["time_limit"]);
         if($this->db->insert("auction",
-            ["item_name","auction_type", "auction_rule","auction_description","start_price","end_time","image"],
-            [$_POST["name"], $_POST["typ_aukcie"], $_POST["pravidla_aukcie"], $_POST["description"], $_POST["starting_price"], $limit->format("Y-m-d H:i:s"),$_POST['image_location']]) === false) {
-            echo "kokot";
+            ["item_name","auction_type", "auction_rule","auction_description","start_price","highest_bid","end_time","image","status","owner_id"],
+            [$_POST["name"], $_POST["typ_aukcie"], $_POST["pravidla_aukcie"], $_POST["description"], $_POST["starting_price"],0, $limit->format("Y-m-d H:i:s"),$_POST['image_location'],'created',$_SESSION['user_id']]) === false) {
+            echo "<script>alert('Error creating auction')</script>";
         }
         header('Location:../my_auctions');
     }

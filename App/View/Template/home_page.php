@@ -1,20 +1,22 @@
 <div id="home">
     <section id="current-auctions">
             <h1>CURRENT AUCTIONS</h1>
-        <script type="text/javascript">f()</script>
         <?php
         foreach ($data['auction_array'] as $auction){
+            if ($auction['status'] != 'approved') continue;
             echo '
             <div class="info">
-                <img class ="pic" src="img/1.jpg">
-                <ul>
+                <img class ="pic" src="'.$auction['image'].'">
+                <ul style="list-style-type: none">
                     <li><h3>'.$auction["item_name"].'</h3></li>
-                    <li>'.$auction["start_price"].' kc</li>
-                    <li class="timer"><h4>ENDS: </h4></li>
-                    <div class="timer"></div>
-                    <form method="post" action="home/place_bid">
-                        <input type="number" name="bit" step="0.01">
-                        <button type="submit">SUBMIT BID</button>
+                    <li><h4>START PRICE: '.$auction["start_price"].' KČ</h4></li>
+                    <li><h4>HIGHEST BID: '.$auction["highest_bid"].' KČ</h4></li>
+                    <li><h4>STATUS: <span style="color: '.getColor($auction["status"]).'">'.$auction["status"].'</span></h4></li>
+                    <li><h4>ENDS: '.$auction["end_time"].' <p>TIMELEFT: <span id="timer'.$auction["auction_id"].'"></span></p></h4></li>
+                    <script type="text/javascript">getTimer(\''.$auction["end_time"].'\',document.getElementById("timer'.$auction["auction_id"].'"))</script>
+                    <form method="post" action="my_auctions">
+                        <input hidden name="auction_id" value="'.$auction["auction_id"].'">
+                        <button type="submit">JOIN AUCTION</button>
                     </form>
                 </ul>
             </div>';
