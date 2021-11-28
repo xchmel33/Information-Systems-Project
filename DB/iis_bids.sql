@@ -76,8 +76,10 @@ CREATE TABLE `auction` (
     `auction_rule` int(1) NOT NULL,
     `auction_description` varchar(255),
     `start_price` FLOAT NOT NULL,
+    `highest_price` FLOAT NOT NULL,
     `end_time` DATETIME NOT NULL,
     `image` varchar(255) DEFAULT NULL,
+    `approved` BOOLEAN DEFAULT NULL,
     PRIMARY KEY (auction_id)
 );
 

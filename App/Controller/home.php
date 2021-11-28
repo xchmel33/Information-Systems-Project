@@ -14,11 +14,15 @@ class home extends controller
         $this->view(FOOTER,$data);
     }
 
-    function place_bid(){
+    function join(){
         if (!isset($_SESSION['user_id'])) {
             header("Location: ../login");
-        } else {
-            $this->db->insert("auction_user",["auction","user_id","owner"],[$_POST['bid'],$_SESSION['user_id'],0]);
+        }
+        else if(!$this->db->insert("auction_user",["auction_id","user_id","user_approved"],[$_POST['auction_id'],$_SESSION['user_id'],0])) {
+            echo "error joining auction";
+        }
+        else{
+            header("Location: ../my_auctions");
         }
 
     }
