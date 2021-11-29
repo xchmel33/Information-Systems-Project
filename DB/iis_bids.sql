@@ -50,10 +50,6 @@ CREATE TABLE `auction` (
 -- Dumping data for table `auction`
 --
 
-INSERT INTO `auction` (`auction_id`, `item_name`, `auction_type`, `auction_rule`, `auction_description`, `start_price`, `min_bid`, `highest_bid`, `highest_bidder`, `end_time`, `image`, `status`, `owner_id`, `organizator_id`, `instant_price`) VALUES
-(12, 'Joint', 0, 0, 'sfajcenicko', 100, 110, 140, '', '2021-12-02 09:36:00', 'App/Image/joint.jpg', 'started', 3, 3, 1000),
-(13, 'Bongo', 0, 0, 'Bongo', 100, 130, 0, '', '2021-12-04 10:33:00', 'App/Image/bongo.jpg', 'started', 4, 3, 1000);
-
 -- --------------------------------------------------------
 
 --
@@ -71,13 +67,6 @@ CREATE TABLE `auction_user` (
 --
 -- Dumping data for table `auction_user`
 --
-
-INSERT INTO `auction_user` (`auction_user`, `auction_id`, `user_id`, `user_approved`, `user_bid`) VALUES
-(1, 3, 4, 1, 140),
-(11, 8, 5, 1, 0),
-(13, 8, 3, 0, 0),
-(14, 12, 4, 1, 140),
-(15, 12, 5, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -100,10 +89,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `country`, `city`, `user_role`) VALUES
-(3, 'licidator', 'lukas123', 'kokot@cechvala.com', 'Slovakia', 'PieÅ¡Å¥any', 'licidator'),
-(4, 'admin', 'fono', 'hubinator@doEmkovany.sk', 'Ketamin', 'Hriby', 'admin'),
-(5, 'new', '2', 'aaaaaaa', 'ss', '1', 'reg_user'),
-(9, 'a', 'lukas123', 'lukasa', 'Slovakia', 'PieÅ¡Å¥any', 'reg_user');
+(1, 'licidator', 'licidator', 'licidator$gmail.com', 'Slovakia', 'Bratislava', 'licidator'),
+(2, 'admin', 'admin', 'admin@gmail.sk', 'Czech Republiv', 'Brno', 'admin'),
+(3, 'user', 'user', 'user$gmail.com', 'Slovakia', 'PieÅ¡Å¥any', 'reg_user');
 
 --
 -- Indexes for dumped tables
@@ -137,19 +125,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `auction`
 --
 ALTER TABLE `auction`
-    MODIFY `auction_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+    MODIFY `auction_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `auction_user`
 --
 ALTER TABLE `auction_user`
-    MODIFY `auction_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+    MODIFY `auction_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-    MODIFY `user_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+    MODIFY `user_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
