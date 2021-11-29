@@ -3,7 +3,7 @@ $approved_display = 'none';
 $organize_display = 'none';
 foreach ($data['auctions'] as $auction) {
     if ($auction['status'] == 'created') $approved_display = 'block';
-    if ($auction['organizator_id'] == $_SESSION['user_id']) $organize_display = 'block';
+    if ($auction['organizator_id'] == $_SESSION['user_id'] && $auction['status'] == 'started') $organize_display = 'block';
 }
 ?>
 <div id="licidator_page">
@@ -11,6 +11,7 @@ foreach ($data['auctions'] as $auction) {
     <div class="auction_wrapper">
     <?php
         foreach ($data['auctions'] as $auction){
+            if ($auction['status'] == "finished") continue;
             $auction_owner = $this->db->selectByColumnName('user','user_id',$auction['owner_id'],'username')[0]['username'];
             $auction_raise_size = (int) $auction['start_price']*0.1;
             $min_bid = ($auction['min_bid'] == 0) ? ($auction['start_price']+$auction_raise_size):$auction['min_bid'];
@@ -45,6 +46,7 @@ foreach ($data['auctions'] as $auction) {
     <div class="auction_wrapper">
     <?php
     foreach ($data['auctions'] as $auction){
+        if ($auction['status'] == "finished") continue;
         $auction_owner = $this->db->selectByColumnName('user','user_id',$auction['owner_id'],'username')[0]['username'];
         $auction_organizator = $this->db->selectByColumnName('user','user_id',$_SESSION['user_id'],'username')[0]['username'];
         if ($auction['organizator_id'] != $_SESSION['user_id']) continue;
@@ -77,7 +79,7 @@ foreach ($data['auctions'] as $auction) {
                         <input type="submit" onclick="confirm(\'Delete auction '.$auction['auction_id'].'\')" name="delete" value="DELETE AUCTION"><br>
                         <input type="submit" name="'.$auction_paused.'" value="'.$auction_paused.' AUCTION"><br>
                         <input type="submit" name="finish" value="FINISH AUCTION"><br>
-                        <input name="highest bidder" value="'.$auction['highest_bidder'].'" hidden>
+                        <input name="highest_bidder" value="'.$auction['highest_bidder'].'" hidden>
                     </form>
                 </ul>
             </div>';

@@ -33,7 +33,8 @@ class licidator extends controller
         }
         if (isset($_POST['PAUSE'])){
             $this->db->update('auction',['status'],['paused'],'auction_id',$_POST['auction_id']);
-        }if (isset($_POST['RESUME'])){
+        }
+        if (isset($_POST['RESUME'])){
             $this->db->update('auction',['status'],['started'],'auction_id',$_POST['auction_id']);
         }
         if (isset($_POST['finish'])){
@@ -45,12 +46,21 @@ class licidator extends controller
         $this->view('licidator.php',$data);
         $this->view(FOOTER);
     }
+    private function updateHighBidder($bid,$bidder,$auctionID){
+        $auction = $this->db->selectByColumnName('auction','auction_id',$auctionID);
+        if ($bid >= $auction[0]['highest_bid']){
+            $this->db->update('auction',['highest_bid','highest_bidder'],[$bid,$bidder],'auction_id',$auctionID);
+        }
+    }
     public function auction_user_table(){
         if (isset($_POST['confirm'])){
             $this->db->update('auction_user',['user_approved'],[1],'user_id',$_POST['user_id']);
         }
         if (isset($_POST['reject'])){
             $this->db->update('auction_user',['user_approved'],[-1],'auction_id',$_POST['auction_id']);
+        }
+        if (isset($_POST['confirm_bid'])){
+            $this->updateHighBidder($_POST['user_bid'],$_POST['username'],$_POST['auction_id']);
         }
         header("Location:../licidator");
     }

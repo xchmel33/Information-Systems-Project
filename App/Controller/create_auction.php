@@ -81,6 +81,7 @@ class create_auction extends controller
     public function upload_image(){
         $filename = $_FILES['file']['name'];
         $location = PATH_IMAGE.$filename;
+        chmod(PATH_IMAGE,777);
         $imageFileType = strtolower(pathinfo($location,PATHINFO_EXTENSION));
         $valid_extensions = array("jpg","jpeg","png");
         $response = 0;
@@ -89,6 +90,7 @@ class create_auction extends controller
         if(in_array(strtolower($imageFileType), $valid_extensions)) {
             /* Upload file */
             if(move_uploaded_file($_FILES['file']['tmp_name'],$location)){
+                //chmod($location,755);
                 $response = $location;
             }
         }

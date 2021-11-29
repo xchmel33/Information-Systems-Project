@@ -6,6 +6,7 @@ function getPageIndex($title){
         case 'my_auctions': return 2;
         case 'licidator': return 3;
         case 'admin': return 4;
+		default: return -1;
     }
 }
 ?>
@@ -17,9 +18,8 @@ function getPageIndex($title){
     <title>WebBids - <?=$data['title']?></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="<?=$data['stylesheet']?>">
-    <link rel="stylesheet" href="App/View/Stylesheet/header.css">
-    <script src='App/View/Javascript/database_func.js'></script>
+    <link rel="stylesheet" href="<?=PATH_STYLESHEET?>header.css">
+    <script src='<?=PATH_JAVASCRIPT?>database_func.js'></script>
 
     <!-- Bootstrap CSS -->
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
@@ -30,7 +30,7 @@ function getPageIndex($title){
     <!-- Bootstrap JS -->
     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
     <!-- master.css -->
-    <link rel="stylesheet" href="App/View/Stylesheet/master.css" type="text/css">
+    <link rel="stylesheet" href="<?=PATH_STYLESHEET?>master.css" type="text/css">
 </head>
 <body>
     <nav class="navbar navbar-default navbar-inverse" role="navigation">

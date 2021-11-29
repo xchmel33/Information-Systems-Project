@@ -49,13 +49,17 @@ function getUserTable($auction_user,$auction,$licidator = false,$owner = '',$org
                                 <input type="submit" name="reject'.'" value="reject join"><br>';
             } else if ($au_user['user_approved'] == 1) {
                 if ($au_user['user_bid'] != ''){
+                    $hBidder = ($au_user['username'] == $auction['highest_bidder'])?'- highest bidder':'<input type="submit" name="confirm_bid" value="confirm bid">';
+                    if ($au_user['user_bid'] == $auction['instant_price']) {
+                        $hBidder = "<input type='submit' name='instant_request' value='CONFIRM INSTANT'>";
+                    }
                     $result .= '<label>' . $au_user['username'] . '</label>
                                     <input hidden name="auction_id" value="' . $auction["auction_id"] . '">
                                     <input hidden name="user_id" value="' . $au_user["user_id"] . '">
-                                    <input hidden name="user_bid" value="' . $auction["user_bid"] . '">
-                                    <label>'.$au_user['user_bid'].'</label>
-                                    <input type="submit" name="confirm" value="confirm bid">
-                                    <input type="submit" name="reject" value="reject bid"><br>';
+                                    <input hidden name="user_bid" value="' .$au_user["user_bid"] . '">
+                                    <input hidden name="username" value="' .$au_user["username"] . '">
+                                    <label>'.$au_user['user_bid'].'</label>'
+                                    .$hBidder;
                 }
                 else {
                     $result .= '<label>' . $au_user['username'] . ' - not active yet</label>

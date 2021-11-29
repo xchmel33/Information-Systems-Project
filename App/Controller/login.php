@@ -4,7 +4,7 @@
 class login extends controller
 {
     function index(){
-        $data['title'] = get_class($this);
+        $data['title'] = 'login';
         $this->view(HEADER,$data);
 
         //check if user not already logged in

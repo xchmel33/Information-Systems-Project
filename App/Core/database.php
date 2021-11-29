@@ -10,7 +10,8 @@ class database
     public $query_count = 0;
 
     public function __construct() {
-        $this->connection = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+	
+		$this->connection = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
         if ($this->connection->connect_error) {
             $this->error('Failed to connect to MySQL - ' . $this->connection->connect_error);
         }
@@ -53,6 +54,9 @@ class database
             return false;
         }
         return $this;
+    }
+	public function createTables($sql){
+        return $this->query($sql);
     }
 
     public function fetchAll() {

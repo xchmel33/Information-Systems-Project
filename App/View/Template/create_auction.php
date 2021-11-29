@@ -70,7 +70,7 @@
                         else{
                             console.log(result);
                             document.getElementById('append_here').innerHTML =
-                                '<img src="'+result+'" alt="error" style="width: 200px;">';
+                                '<img src="'+result+'" alt="'+result+'" style="width: 200px;">';
                             document.getElementById('image_location'). value = result;
                         }
 

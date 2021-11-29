@@ -1,0 +1,60 @@
+.pic{
+    width: 20vh;
+}
+.short{
+    width: 50px;
+}
+.user_join_wrapper{
+    border: 1px solid gray;
+}
+.action_ul{
+    list-style-type: none;
+    width: 30vw;
+}
+.action_li{
+    list-style-type: none;
+}
+.auction_wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.basic {
+    float: left;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    color: rgb(0, 0, 0);
+
+    margin: 0 auto;
+}
+.info{
+    border: 2px solid grey;
+    width: 30vw;
+}
+.info h3{
+    min-width: 150px;
+}
+.basic h1{
+    font-size: 60px;
+    text-transform: uppercase;
+    text-align: center;
+}
+#login_form_wrapper, #home{
+    text-align: center;
+    margin: 200px 20vw;
+    width: 60vw;
+}
+#header{
+    margin: 100px;
+}
+#header_nav {
+    margin: 50px;
+}
+#login_form, #reg_form{
+    width: 10vw;
+    margin: 20px 5vw;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
