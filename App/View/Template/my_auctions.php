@@ -12,7 +12,7 @@ foreach ($data['created_auctions'] as $auction) {
     <?php
         foreach ($data['created_auctions'] as $auction){
             if ($auction['owner_id'] != $_SESSION['user_id']) continue;
-            $instant_buy = ($auction['instant_price'] == 0)?"":"<input name='instant_price' value='".$auction['instant_price']."'>";
+            $instant_buy = ($auction['instant_price'] == 0)?"":"<input type="" name='instant_price' value='".$auction['instant_price']."'><input type='submit' value='Instant buy'>";
 
             echo '
             <div class="info">
