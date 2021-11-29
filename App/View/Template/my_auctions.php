@@ -12,6 +12,8 @@ foreach ($data['created_auctions'] as $auction) {
     <?php
         foreach ($data['created_auctions'] as $auction){
             if ($auction['owner_id'] != $_SESSION['user_id']) continue;
+            $instant_buy = ($auction['instant_price'] == 0)?"":"<input name='instant_price' value='".$auction['instant_price']."'>";
+
             echo '
             <div class="info">
                 <img class ="pic" src="'.$auction['image'].'">
@@ -29,6 +31,7 @@ foreach ($data['created_auctions'] as $auction) {
             echo '<form method="post" action="my_auctions">
                         <input hidden name="auction_id" value="'.$auction["auction_id"].'">
                         <input type="submit" name="cancel" value="CANCEL AUCTION">
+                        '.$instant_buy.'
                     </form></ul></div>';
         }
     ?>
