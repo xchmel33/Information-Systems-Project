@@ -14,8 +14,8 @@ define("HEADER",'header.php');
 define("FOOTER",'footer.php');
 
 /** DATABASE **/
-define("DB_NAME",'f153750');
-define("DB_USER",'f153750');
+define("DB_NAME",'f153755');
+define("DB_USER",'f153755');
 define("DB_PASSWORD",'password');
 define("DB_PORT",'');
 define("DB_HOST",'a045um.forpsi.com');
