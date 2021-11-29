@@ -12,7 +12,10 @@ foreach ($data['created_auctions'] as $auction) {
     <?php
         foreach ($data['created_auctions'] as $auction){
             if ($auction['owner_id'] != $_SESSION['user_id']) continue;
-            $instant_buy = ($auction['instant_price'] == 0)?"":"<input type="" name='instant_price' value='".$auction['instant_price']."'><input type='submit' value='Instant buy'>";
+            if($auction['instant_price'] == 0){
+                $required = 'required';
+            }
+            $instant_buy = "<input type='number' name='instant_price' value='".$auction['instant_price']."'><input type='submit' name='set_instant' value='SET INSTANT PRICE'>";
 
             echo '
             <div class="info">
@@ -20,6 +23,7 @@ foreach ($data['created_auctions'] as $auction) {
                 <ul style="list-style-type: none">
                     <li><h3>'.$auction["item_name"].'</h3></li>
                     <li><h4>START PRICE: '.$auction["start_price"].' KČ</h4></li>
+                    <li><h4>INSTANT PRICE: '.$auction["instant_price"].' KČ</h4></li>
                     <li><h4>MIN BID: '.$auction["min_bid"].' KČ</h4></li>
                     <li><h4>HIGHEST BID: '.$auction["highest_bid"].' KČ</h4></li>
                     <li><h4>HIGHEST BIDDER: '.$auction["highest_bidder"].'</h4></li>
@@ -30,7 +34,7 @@ foreach ($data['created_auctions'] as $auction) {
             if ($auction['status'] == 'created') echo 'Please wait for licidator to confirm';
             echo '<form method="post" action="my_auctions">
                         <input hidden name="auction_id" value="'.$auction["auction_id"].'">
-                        <input type="submit" name="cancel" value="CANCEL AUCTION">
+                        <input type="submit" name="cancel" value="CANCEL AUCTION"><br>
                         '.$instant_buy.'
                     </form></ul></div>';
         }
@@ -64,6 +68,7 @@ foreach ($data['created_auctions'] as $auction) {
                 <ul style="list-style-type: none">
                     <li><h3>'.$auction["item_name"].'</h3></li>
                     <li><h4>START PRICE: '.$auction["start_price"].' KČ</h4></li>
+                    <li><h4>INSTANT PRICE: '.$auction["instant_price"].' KČ</h4></li>
                     <li><h4>HIGHEST BID: '.$auction["highest_bid"].' KČ</h4></li>                    
                     <li><h4>MIN BID: '.$auction["min_bid"].' KČ</h4></li>
                     <li><h4>HIGHEST BIDDER: '.$auction["highest_bidder"].'</h4></li>
@@ -94,6 +99,7 @@ foreach ($data['created_auctions'] as $auction) {
                 <ul style="list-style-type: none">
                     <li><h3>' . $auction["item_name"] . '</h3></li>
                     <li><h4>START PRICE: ' . $auction["start_price"] . ' KČ</h4></li>
+                    <li><h4>INSTANT PRICE: '.$auction["instant_price"].' KČ</h4></li>
                     <li><h4>HIGHEST BID: ' . $auction["highest_bid"] . ' KČ</h4></li>
                     <li><h4>STATUS: <span style="color: ' . getColor($auction["status"]) . '">' . $auction["status"] . '</span></h4></li>
                     <li><h4>YOU HAVE ' . $won . ' THIS AUCTION</h4></li>

@@ -21,6 +21,7 @@ foreach ($data['auctions'] as $auction) {
                 <ul style="list-style-type: none !important;" class="auction_ul">
                     <li><h3>'.$auction["item_name"].'</h3></li>
                     <li><h4>START PRICE: '.$auction["start_price"].' KČ</h4></li>
+                    <li><h4>INSTANT PRICE: '.$auction["instant_price"].' KČ</h4></li>
                     <li><h4>MIN BID: '.$min_bid.' KČ</h4></li>
                     <li><h4>OWNER: '.$auction_owner.'</h4></li>
                     <li><h4>STATUS: <span style="color: '.getColor($auction["status"]).'">'.$auction["status"].'</span></h4></li>
