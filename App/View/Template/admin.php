@@ -27,6 +27,17 @@
     }
     ?>
 </div>
+<div id="auction_history">
+    <?php
+        foreach ($data['auctions'] as $auction){
+            if ($auction['status'] != 'finished') continue;
+            echo '<div id="auction'.$auction['auction_id'].'"><p>'.$auction['auction_id'].' '.$auction['item_name'].'</p></div>';
+        }
+    ?>
+    <form method="post" action="admin/deleteAll">
+        <input type="submit" value="clear auction history" name="history">
+    </form>
+</div>
 <script type="text/javascript">
     function conf_delete(username,id){
         if (confirm("Delete user "+username+" ?")){

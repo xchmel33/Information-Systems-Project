@@ -14,10 +14,10 @@ define("HEADER",'header.php');
 define("FOOTER",'footer.php');
 
 /** DATABASE **/
-define("DB_NAME",'xchmel33');
-define("DB_USER",'xchmel33');
-define("DB_PASSWORD",'4tisomju');
-define("DB_PORT",'/var/run/mysql/mysql.sock');
+define("DB_NAME",'iis_bids');
+define("DB_USER",'root');
+define("DB_PASSWORD",'');
+define("DB_PORT",'');
 define("DB_HOST",'localhost');
 
 /** CORE RESOURCES **/

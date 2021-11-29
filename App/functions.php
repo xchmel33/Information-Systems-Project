@@ -62,9 +62,7 @@ function getUserTable($auction_user,$auction,$licidator = false,$owner = '',$org
                                     .$hBidder;
                 }
                 else {
-                    $result .= '<label>' . $au_user['username'] . ' - not active yet</label>
-                            <input type="submit" name="kick" value="kick">
-                            <input type="text" hidden name="kick_id" value="' . $au_user['user_id'] . '">';
+                    $result .= '<label>' . $au_user['username'] . ' - not active yet</label>';
                 }
             }
             $result .= '</form>';
