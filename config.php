@@ -1,6 +1,6 @@
 <?php
 
-define('HTTPS_SERVER','https://www.stud.fit.vutbr.cz/~xchmel33/WEBBIDS/');
+define('HTTPS_SERVER','http://webbids.cz');
 define('PATH_MODEL','App/Model/');
 define('PATH_CONTROLLER','App/Controller/');
 define('PATH_CORE','App/Core/');
@@ -14,11 +14,11 @@ define("HEADER",'header.php');
 define("FOOTER",'footer.php');
 
 /** DATABASE **/
-define("DB_NAME",'iis_bids');
-define("DB_USER",'root');
-define("DB_PASSWORD",'');
+define("DB_NAME",'f153750');
+define("DB_USER",'f153750');
+define("DB_PASSWORD",'password');
 define("DB_PORT",'');
-define("DB_HOST",'localhost');
+define("DB_HOST",'a045um.forpsi.com');
 
 /** CORE RESOURCES **/
 require PATH_CORE.'router.php';
