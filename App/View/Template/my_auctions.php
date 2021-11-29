@@ -40,17 +40,20 @@ foreach ($data['created_auctions'] as $auction) {
     <?php
         foreach ($data['joined_auctions'] as $auction){
             if ($auction['user_id'] != $_SESSION['user_id']) continue;
+            $auction_owner = $this->db->selectByColumnName('user','user_id',$auction['owner_id'],'username')[0]['username'];
+            $auction_organizator = $this->db->selectByColumnName('user','user_id',$auction['organizator_id'],'username')[0]['username'];
 
             $auction_raise_size = (int)($auction['highest_bid'] == 0) ? $auction['start_price']*0.1:$auction['highest_bid']*0.1;
             $auction_bid = ($auction['user_approved'] && $auction['status'] == "started") ?
                 '<input type="submit" name="bidM" value="BID MIN ('.$auction['min_bid'].')">
                  <input type="hidden" hidden name="bid_min" value="'.$auction['min_bid'].'">
+                 <input type="hidden" hidden name="bidder" value="'.$_SESSION['username'].'">
                  <input type="number" step="'.$auction_raise_size.'" name="bidC_val" value="'.$auction['min_bid'].'">
                  <input type="submit" name="bidC" value="BID CUSTOM">':'';
             $leave = ($auction['user_approved'] == 1) ? "LEAVE AUCTION":"CANCEL JOIN";
 
             $auction_user = $this->db->selectAll(['user','auction_user'],'user_id');
-            $auction_user_table = getUserTable($auction_user,$auction);
+            $auction_user_table = getUserTable($auction_user,$auction,false,$auction_owner,$auction_organizator);
 
             echo '
             <div class="info">'.$auction_user_table.'

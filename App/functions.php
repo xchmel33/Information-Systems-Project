@@ -27,49 +27,57 @@ function getUserStatus($status){
         case 0: return '<span style="color: aqua">Please wait while licidator allows you to join this auction</span>';
         case 1: return '<span style="color: lime">Registered to this auction</span>';
     }
+    return;
 }
 
-function getUserTable($auction_user,$auction){
+function getUserTable($auction_user,$auction,$licidator = false,$owner = '',$organizator = ''){
     $count = 0;
-    if ($_SESSION['user_role'] == 'licidator' || $_SESSION['user_role'] == 'admin') {
-        $result = '<div class="user_join_wrapper">
-                   <h4>USERS IN THIS AUCTION:</h4>
-                   <form method="post" action="licidator" class="users_join">';
+    $result = '<div class="user_join_wrapper">
+                   <h4>USERS IN THIS AUCTION:</h4>';
+    $result .= '<label>\''.$owner.'\' - owner</label><br>';
+    $result .= '<label>\''.$organizator.'\' - organizator</label><br>';
+    if ($licidator) {
         foreach ($auction_user as $au_user) {
+            $result .= '<form method="post" action="licidator/auction_user_table" class="users_join">';
             $count++;
             if ($au_user['auction_id'] != $auction['auction_id']) continue;
             if ($au_user['user_approved'] == 0) {
                 $result .= '<label>' . $au_user['username'] . '</label>
                                 <input hidden name="auction_id" value="' . $auction["auction_id"] . '">
-                                <input type="submit" name="confirm" value="confirm join">
-                                <input type="submit" name="reject" value="reject join">';
+                                <input hidden name="user_id" value="' . $au_user["user_id"] . '">
+                                <input type="submit" name="confirm'.'" value="confirm join">
+                                <input type="submit" name="reject'.'" value="reject join"><br>';
             } else if ($au_user['user_approved'] == 1) {
                 if ($au_user['user_bid'] != ''){
                     $result .= '<label>' . $au_user['username'] . '</label>
                                     <input hidden name="auction_id" value="' . $auction["auction_id"] . '">
+                                    <input hidden name="user_id" value="' . $au_user["user_id"] . '">
+                                    <input hidden name="user_bid" value="' . $auction["user_bid"] . '">
                                     <label>'.$au_user['user_bid'].'</label>
                                     <input type="submit" name="confirm" value="confirm bid">
-                                    <input type="submit" name="reject" value="reject bid">';
+                                    <input type="submit" name="reject" value="reject bid"><br>';
                 }
-                $result .= '<label>' . $au_user['username'] . ' - not active yet</label>
-                            <input type="submit" name="kick" value="kick">';
+                else {
+                    $result .= '<label>' . $au_user['username'] . ' - not active yet</label>
+                            <input type="submit" name="kick" value="kick">
+                            <input type="text" hidden name="kick_id" value="' . $au_user['user_id'] . '">';
+                }
             }
+            $result .= '</form>';
         }
-        $result .= '</form></div>';
+        $result .= '</div>';
     } else{
-        $result = '<div class="user_join_wrapper">
-                   <h4>USERS IN THIS AUCTION:</h4>';
         foreach ($auction_user as $au_user) {
             $count++;
             if ($au_user['auction_id'] != $auction['auction_id']) continue;
             if ($au_user['user_approved'] == 0) {
-                $result .= '<label>' . $au_user['username'] . ' wants to join</label>';
+                $result .= '<label>' . $au_user['username'] . ' wants to join</label><br>';
             } else if ($au_user['user_approved'] == 1) {
                 if ($au_user['user_bid'] != ''){
-                    $hBidder = ($au_user['username'] == $auction['highest_bidder'])? " - highest bidder":" - last bid";
-                    $result .= '<label>' . $au_user['username'] . $hBidder . $au_user['user_bid'] . '</label>';
+                    $hBidder = ($au_user['username'] == $auction['highest_bidder'])? " - highest bidder ":" - bids ";
+                    $result .= '<label>' . $au_user['username'] . $hBidder . $au_user['user_bid'] . '</label><br>';
                 }
-                $result .= '<label>' . $au_user['username'] . ' - not active yet</label>';
+                $result .= '<label>' . $au_user['username'] . ' - joined, not active</label><br>';
             }
         }
         $result .= '</div>';

@@ -45,35 +45,51 @@ class create_auction extends controller
         return $dst;
     }
 
+//    public function upload_image(){
+//        $filename = $_FILES['file']['name'];
+//        list($w, $h) = getimagesize($_FILES['file']['name']);
+//        $location = PATH_IMAGE.$filename;
+//        $imageFileType = strtolower(pathinfo($location,PATHINFO_EXTENSION));
+//        $valid_extensions = array("jpg","jpeg","png");
+//        $response = 0;
+//        $newheight = 200;
+//        $newwidth = 200;
+//
+//        /* Check file extension */
+//        if(in_array(strtolower($imageFileType), $valid_extensions)) {
+//
+//            /* Resize image */
+//            if ($imageFileType == "jpg" || $imageFileType == "jpeg") {
+//                $src = imagecreatefromjpeg($location);
+//            } else if ($imageFileType == "png") {
+//                $src = imagecreatefrompng($location);
+//            } else {
+//                $src = imagecreatefromgif($location);
+//            }
+//
+//            $dst = imagecreatetruecolor($newwidth, $newheight);
+//            imagecopyresampled($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+//
+//            /* Upload file */
+//            if(move_uploaded_file($_FILES['file']['tmp_name'],$location)){
+//                $response = $location;
+//
+//            }
+//        }
+//        echo $response;
+//    }
     public function upload_image(){
         $filename = $_FILES['file']['name'];
-        list($w, $h) = getimagesize($_FILES['file']['name']);
         $location = PATH_IMAGE.$filename;
         $imageFileType = strtolower(pathinfo($location,PATHINFO_EXTENSION));
         $valid_extensions = array("jpg","jpeg","png");
         $response = 0;
-        $newheight = 200;
-        $newwidth = 200;
 
         /* Check file extension */
         if(in_array(strtolower($imageFileType), $valid_extensions)) {
-
-            /* Resize image */
-            if ($imageFileType == "jpg" || $imageFileType == "jpeg") {
-                $src = imagecreatefromjpeg($location);
-            } else if ($imageFileType == "png") {
-                $src = imagecreatefrompng($location);
-            } else {
-                $src = imagecreatefromgif($location);
-            }
-    
-            $dst = imagecreatetruecolor($newwidth, $newheight);
-            imagecopyresampled($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
-
             /* Upload file */
             if(move_uploaded_file($_FILES['file']['tmp_name'],$location)){
                 $response = $location;
-                
             }
         }
         echo $response;

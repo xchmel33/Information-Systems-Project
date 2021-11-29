@@ -45,13 +45,14 @@ foreach ($data['auctions'] as $auction) {
     <?php
     foreach ($data['auctions'] as $auction){
         $auction_owner = $this->db->selectByColumnName('user','user_id',$auction['owner_id'],'username')[0]['username'];
+        $auction_organizator = $this->db->selectByColumnName('user','user_id',$_SESSION['user_id'],'username')[0]['username'];
         if ($auction['organizator_id'] != $_SESSION['user_id']) continue;
         $auction_raise_size = (int)($auction['highest_bid'] == 0) ? $auction['start_price']*0.1:$auction['highest_bid']*0.1;
         $auction_user = $this->db->selectAll(['user','auction_user'],'user_id');
         $auction_paused = ($auction['status'] == "paused") ? "RESUME":"PAUSE";
 
         // user join form
-        $user_table = getUserTable($auction_user,$auction);
+        $user_table = getUserTable($auction_user,$auction,true,$auction_owner,$auction_organizator);
         echo '
             <div class="info">'.$user_table.'
                 <img class ="pic" src="'.$auction['image'].'">

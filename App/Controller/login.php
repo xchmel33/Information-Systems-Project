@@ -73,7 +73,7 @@ class login extends controller
         if ($query == []){
             $query = $this->db->selectByColumnName('user','username',$_POST['email']);
         }
-        if($_POST['password'] == $query[0]['password']){
+        if($query != [] && $_POST['password'] == $query[0]['password']){
             echo '1'.$query[0]['username'];
             $this->start_login_session($query[0]['username'],$query[0]['user_role'],$query[0]['user_id']);
         }
@@ -98,6 +98,8 @@ class login extends controller
         unset($_SESSION['username']);
         unset($_SESSION['password']);
         unset($_SESSION['user_role']);
+        unset($_SESSION['user_id']);
+        unset($_SESSION['timeout']);
         $_SESSION['valid'] = false;
     }
 }

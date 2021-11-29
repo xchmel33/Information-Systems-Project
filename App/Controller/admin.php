@@ -4,6 +4,10 @@
 class admin extends controller
 {
     public function index(){
+        //authentication
+        if($_SESSION['user_role'] != 'licidator' && $_SESSION['user_role'] != 'admin'){
+            header("Location:error");
+        }
 
         // get index of form submitted
         $i = isset($_POST['user_i']) ? $_POST['user_i']:-1;
