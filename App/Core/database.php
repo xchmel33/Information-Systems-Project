@@ -5,12 +5,13 @@ class database
 {
     protected $connection;
     protected $query;
-    protected $show_errors = TRUE;
+    protected $show_errors = FALSE;
     protected $query_closed = TRUE;
     public $query_count = 0;
 
     public function __construct() {
-        $this->connection = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+	
+		$this->connection = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
         if ($this->connection->connect_error) {
             $this->error('Failed to connect to MySQL - ' . $this->connection->connect_error);
         }
@@ -44,16 +45,21 @@ class database
             $this->query->execute();
             if ($this->query->errno) {
                 $this->error('Unable to process MySQL query (check your params) - ' . $this->query->error);
+                return false;
             }
             $this->query_closed = FALSE;
             $this->query_count++;
         } else {
             $this->error('Unable to prepare MySQL statement (check your syntax) - ' . $this->connection->error);
+            return false;
         }
         return $this;
     }
+	public function createTables($sql){
+        return $this->query($sql);
+    }
 
-    public function fetchAll($callback = null) {
+    public function fetchAll() {
         $params = [];
         $row = [];
         $meta = $this->query->result_metadata();
@@ -67,12 +73,7 @@ class database
             foreach ($row as $key => $val) {
                 $r[$key] = $val;
             }
-            if ($callback != null && is_callable($callback)) {
-                $value = call_user_func($callback, $r);
-                if ($value == 'break') break;
-            } else {
-                $result[] = $r;
-            }
+            $result[] = $r;
         }
         $this->query->close();
         $this->query_closed = TRUE;
@@ -128,10 +129,33 @@ class database
         return 'b';
     }
 
+    public function update($table, $column_names, $column_values,$col_name, $col_value){
+        if (count($column_names) != count($column_values)){
+            return false;
+        }
+        //check if table exist
+        if ($this->query("SHOW TABLES LIKE '%".$table."%'")->fetchArray() == []){
+            return false;
+        }
+
+        $sql = "UPDATE ".$table." SET ";
+        for ($i = 0; $i < count($column_names); $i++){
+            $sql .= $column_names[$i]." = '".$column_values[$i]."', ";
+        }
+        $sql = substr($sql,0,-2);
+        $sql .= " WHERE ".$col_name." = ".$col_value;
+        return (bool)$this->query($sql);
+    }
+
     public function insert($table, $column_names, $column_values){
         if (count($column_names) != count($column_values)){
             return false;
         }
+        //check if table exist
+        if ($this->query("SHOW TABLES LIKE '%".$table."%'")->fetchArray() == []){
+            return false;
+        }
+
         $sql = "INSERT INTO ".$table."(";
         foreach ($column_names as $column_name){
             $sql .= $column_name.",";
@@ -141,11 +165,32 @@ class database
             $sql .= "'".$column_value."',";
         }
         $sql = substr($sql,0,-1).")";
-        return $this->query($sql)->query;
+        //echo $sql;
+        return (bool)$this->query($sql);
+    }
+
+    public function deleteRecord($table,$col_name,$col_value){
+        return (bool)$this->query("DELETE FROM ".$table." WHERE ".$col_name." = '".$col_value."'");
+    }
+    public function join($tables,$column,$rows = '*'){
+        return "SELECT ".$rows." FROM ".$tables[0]." INNER JOIN ".$tables[1]." ON ".$tables[0].".".$column."=".$tables[1].'.'.$column.";";
     }
 
     public function selectByColumnName($table,$col_name,$col_value, $rows = '*'){
         $result = $this->query('SELECT '.$rows.' FROM '.$table.' WHERE '.$col_name.'=\''.$col_value.'\'');
         return $result->fetchAll();
+    }
+    public function selectAll($tables,$col = '', $rows = '*'){
+        if(is_array($tables)){
+            $result = $this->query($this->join($tables,$col));
+        }
+        else{
+            $result = $this->query('SELECT '.$rows.' FROM '.$tables);
+        }
+        return ($result) ? $result->fetchAll():false;
+    }
+    public function getAutoIncrement($table){
+        $sql = 'SELECT `AUTO_INCREMENT` FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = \''.DB_NAME.'\' AND   TABLE_NAME   = \''.$table.'\'';
+        return $this->query($sql)->fetchAll()[0]['AUTO_INCREMENT'];
     }
 }

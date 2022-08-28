@@ -4,7 +4,7 @@ script.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(script);
 
 
-function validate_login(user_type,email,password,callback) {
+function validate_login(email,password,callback) {
     $.ajax({
         url: 'login/validate_login',
         type: 'post',
@@ -12,7 +12,6 @@ function validate_login(user_type,email,password,callback) {
         data: {
             email: email,
             password: password,
-            user_type: user_type
         },
         success: function (response){
             callback(response);
@@ -48,5 +47,33 @@ function logout(){
     });
 }
 
+function upload_image(fd,callback) {
+    $.ajax({
+        url: 'create_auction/upload_image',
+        type: 'post',
+        data: fd,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            callback(response);
+        },
+    });
+}
+function getTimer(end_time,element){
+    let x =setInterval(function () {
+        let countDownDate = new Date(end_time).getTime();
+        let now = new Date().getTime();
+        let distance = countDownDate - now;
+        let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        element.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+        if (distance < 0) {
+            clearInterval(x);
+            element.innerHTML = "Ended";
+        }
+    },1000);
+}
 
 

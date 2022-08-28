@@ -11,6 +11,7 @@ class controller
      * @var database
      */
     protected $db;
+    protected $model;
 
     /**
      * Initialize database
@@ -48,8 +49,8 @@ class controller
      * @param array $data
      */
     protected function view($view, $data = []){
-        if(file_exists(PATH_VIEW.$view)) {
-            include PATH_VIEW.$view;
+        if(file_exists(PATH_TEMPLATE.$view)) {
+            include PATH_TEMPLATE.$view;
         }
     }
 
@@ -65,8 +66,8 @@ class controller
 
         $model = $model.'php';
         if (file_exists(PATH_MODEL.$model)){
-            include PATH_MODEL.$model;
-            return $model();
+            require PATH_MODEL.$model;
+            $this->model = $model;
         }
         else{
             return false;

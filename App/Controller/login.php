@@ -54,11 +54,12 @@ class login extends controller
         }
 
         // insert
-        $column_names = ['username','password','email','country','city'];
-        $column_values = [$username,$password,$email,$country,$city];
+        $column_names = ['username','password','email','country','city','user_role'];
+        $column_values = [$username,$password,$email,$country,$city,'reg_user'];
         $this->db->insert('user',$column_names,$column_values);
         echo '1'.$username;
-        $this->start_login_session($username);
+        $user_id = $this->db->getAutoIncrement('user')-1;
+        $this->start_login_session($username,'reg_user',$user_id);
     }
 
 
@@ -69,25 +70,26 @@ class login extends controller
             return;
         }
         $query = $this->db->selectByColumnName('user','email',$_POST['email']);
-//        var_dump($query);
         if ($query == []){
-            echo 'User with email '.$_POST['email'].' does not exist!';
+            $query = $this->db->selectByColumnName('user','username',$_POST['email']);
         }
-        else if($_POST['password'] == $query[0]['password']){
+        if($query != [] && $_POST['password'] == $query[0]['password']){
             echo '1'.$query[0]['username'];
-            $this->start_login_session($query[0]['username']);
+            $this->start_login_session($query[0]['username'],$query[0]['user_role'],$query[0]['user_id']);
         }
         else{
-            echo 'Invalid password!';
+            echo 'Invalid username or password!';
         }
     }
 
-    protected function start_login_session($username){
+    protected function start_login_session($username,$user_role,$user_id){
         session_abort();
         session_start();
         $_SESSION['valid'] = true;
         $_SESSION['timeout'] = time();
         $_SESSION['username'] = $username;
+        $_SESSION['user_role'] = $user_role;
+        $_SESSION['user_id'] = $user_id;
     }
 
     function logout(){
@@ -95,6 +97,9 @@ class login extends controller
         session_start();
         unset($_SESSION['username']);
         unset($_SESSION['password']);
+        unset($_SESSION['user_role']);
+        unset($_SESSION['user_id']);
+        unset($_SESSION['timeout']);
         $_SESSION['valid'] = false;
     }
 }

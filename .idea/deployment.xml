@@ -2,6 +2,13 @@
 <project version="4">
   <component name="PublishConfigData" serverName="localhost" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
+      <paths name="ftpx.forpsi.com">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/IIS" local="$PROJECT_DIR$" web="/webbids.cz/IIS" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="localhost">
         <serverdata>
           <mappings>

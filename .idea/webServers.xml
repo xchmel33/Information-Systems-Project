@@ -5,6 +5,13 @@
       <webServer id="4d1ac33c-3a5f-467b-ada5-d3c88bb679bc" name="localhost" url="http://localhost/">
         <fileTransfer mountedRoot="C:\xampp\htdocs" accessType="MOUNT" port="0" />
       </webServer>
+      <webServer id="472b6477-8b8b-435a-ad3b-aedf4d296ea7" name="ftpx.forpsi.com" url="http://ftpx.forpsi.com">
+        <fileTransfer rootFolder="/www" host="ftpx.forpsi.com" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>
