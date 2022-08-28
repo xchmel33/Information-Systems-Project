@@ -42,7 +42,7 @@ class licidator extends controller
             $this->db->update('auction',['status'],['started'],'auction_id',$_POST['auction_id']);
         }
         if (isset($_POST['finish'])){
-            $this->db->update('auction',['status'],['finished'],'auction_id',$_POST['auction_id']);
+            $this->db->update('auction',['status','winner'],['finished',$_POST['highest_bidder']],'auction_id',$_POST['auction_id']);
         }
         $data['title'] = 'licidator';
         $data['auctions'] = $this->db->selectAll('auction');

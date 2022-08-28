@@ -1,5 +1,4 @@
 <?php
-
 $approved_display = 'none';
 $organize_display = 'none';
 foreach ($data['auctions'] as $auction) {
@@ -22,7 +21,6 @@ foreach ($data['auctions'] as $auction) {
                 <img class ="pic" src="'.$auction['image'].'">
                 <ul style="list-style-type: none !important;" class="auction_ul">
                     <li><h3>'.$auction["item_name"].'</h3></li>
-                    <li><p>'.$auction["auction_description"].'</p></li>
                     <li><h4>START PRICE: '.$auction["start_price"].' KČ</h4></li>
                     <li><h4>INSTANT PRICE: '.$auction["instant_price"].' KČ</h4></li>
                     <li><h4>MIN BID: '.$min_bid.' KČ</h4></li>
@@ -55,8 +53,6 @@ foreach ($data['auctions'] as $auction) {
         $auction_raise_size = (int)($auction['highest_bid'] == 0) ? $auction['start_price']*0.1:$auction['highest_bid']*0.1;
         $auction_user = $this->db->selectAll(['user','auction_user'],'user_id');
         $auction_paused = ($auction['status'] == "paused") ? "RESUME":"PAUSE";
-        $instant_buy = "<input type='number' name='instant_price' value='".$auction['instant_price']."'><input type='submit' name='set_instant' value='SET INSTANT PRICE'><br>";
-
 
         // user join form
         $user_table = getUserTable($auction_user,$auction,true,$auction_owner,$auction_organizator);
@@ -65,9 +61,7 @@ foreach ($data['auctions'] as $auction) {
                 <img class ="pic" src="'.$auction['image'].'">
                 <ul style="list-style-type: none">
                     <li><h3>'.$auction["item_name"].'</h3></li>
-                    <li><p>'.$auction["auction_description"].'</p></li>
                     <li><h4>START PRICE: '.$auction["start_price"].' KČ</h4></li>
-                    <li><h4>INSTANT PRICE: '.$auction["instant_price"].' KČ</h4></li>
                     <li><h4>MIN BID: '.$auction["min_bid"].' KČ</h4></li>
                     <li><h4>HIGHEST BID: '.$auction["highest_bid"].' KČ</h4></li>
                     <li><h4>HIGHEST BIDDER: '.$auction["highest_bidder"].'</h4></li>
@@ -75,10 +69,10 @@ foreach ($data['auctions'] as $auction) {
                     <li><h4>STATUS: <span style="color: '.getColor($auction["status"]).'">'.$auction["status"].'</span></h4></li>
                     <li><h4>TIMELEFT: <span id="timer'.$auction["auction_id"].'"></span></h4></li>
                     <script type="text/javascript">getTimer(\''.$auction["end_time"].'\',document.getElementById("timer'.$auction["auction_id"].'"))</script>
-                    <form method="post" action="licidator">
+                    <form id="auction_f'.$auction['auction_id'].'" method="post" action="licidator">
                         <input hidden name="auction_id" value="'.$auction["auction_id"].'">
                         <input type="number" step="'.(int)$auction_raise_size.'" name="bidC_val" value="'.$auction['min_bid'].'">
-                        <input type="submit" name="bidR" value="SET MIN BID"><br>'.$instant_buy.'
+                        <input type="submit" name="bidR" value="SET MIN BID"><br>
                         <input name="setDate" type="date" value="'.explode(' ',$auction['end_time'])[0].'">
                         <input name="setTime" type="time" value="'.explode(' ',$auction['end_time'])[1].'">
                         <input type="submit" name="setT" value="SET TIMELEFT"><br>
@@ -93,4 +87,3 @@ foreach ($data['auctions'] as $auction) {
     ?>
     </div>
 </div>
-

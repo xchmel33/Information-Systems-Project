@@ -10,7 +10,7 @@
                         <p style="color: red" id="r-error"></p>
                         <div class="form-group">
                             <h4>Select image to upload to auction:</h4>
-                            <input type="file" id="fileToUpload">
+                            <input type="file" id="fileToUpload" required>
                             <input type="button" onclick="upload()" value="upload">
                             <div id="append_here"></div>
                             <input hidden name="image_location" id="image_location">
@@ -19,7 +19,7 @@
                             <input type="text" name="name" class="form-control input-lg" placeholder="Názov produktu*" required>
                         </div>
                         <div class="form-group">
-                            <input type="number" step="10" name="starting_price" class="form-control input-lg" placeholder="0*" required>
+                            <input type="number" step="0.1" name="starting_price" class="form-control input-lg" placeholder="0*" required>
                         </div>
                         <h4>Timeleft:</h4>
                         <div class="form-group">
@@ -86,4 +86,3 @@
 <script>
 
 </script>
-

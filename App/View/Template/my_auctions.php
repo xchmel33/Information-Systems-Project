@@ -26,7 +26,6 @@ foreach ($data['joined_auctions'] as $ja){
                 <img class ="pic" src="'.$auction['image'].'">
                 <ul style="list-style-type: none">
                     <li><h3>'.$auction["item_name"].'</h3></li>
-                    <li><p>'.$auction["auction_description"].'</p></li>
                     <li><h4>START PRICE: '.$auction["start_price"].' KČ</h4></li>
                     <li><h4>INSTANT PRICE: '.$auction["instant_price"].' KČ</h4></li>
                     <li><h4>MIN BID: '.$auction["min_bid"].' KČ</h4></li>
@@ -57,11 +56,10 @@ foreach ($data['joined_auctions'] as $ja){
             $auction_organizator = $this->db->selectByColumnName('user','user_id',$auction['organizator_id'],'username')[0]['username'];
 
             $auction_raise_size = (int)($auction['highest_bid'] == 0) ? $auction['start_price']*0.1:$auction['highest_bid']*0.1;
-            $auction_instant_price = ($auction['instant_price'] == 0)?'':'<input type="submit" name="instant_buy" value="BUY INSTANT"><br>';
             $auction_bid = ($auction['user_approved'] == "1" && $auction['status'] == "started") ?
-                $auction_instant_price.'
-                 <input type="text" hidden name="instant_price" value="'.$auction['instant_price'].'">
-                 <input type="submit" name="bidM" value="BID MIN ('.$auction['min_bid'].')"><br>
+                '<input type="submit" name="instant_buy" value="BUY INSTANT"><br>
+                <input type="text" hidden name="instant_price" value="'.$auction['instant_price'].'">
+                 <input type="submit" name="bidM" value="BID MIN ('.$auction['min_bid'].')">
                  <input type="hidden" hidden name="bid_min" value="'.$auction['min_bid'].'">
                  <input type="hidden" hidden name="bidder" value="'.$_SESSION['username'].'">
                  <input type="number" step="'.$auction_raise_size.'" name="bidC_val" value="'.$auction['min_bid'].'">
@@ -76,10 +74,9 @@ foreach ($data['joined_auctions'] as $ja){
                 <img class ="pic" src="'.$auction['image'].'">
                 <ul style="list-style-type: none">
                     <li><h3>'.$auction["item_name"].'</h3></li>
-                    <li><p>'.$auction["auction_description"].'</p></li>
                     <li><h4>START PRICE: '.$auction["start_price"].' KČ</h4></li>
                     <li><h4>INSTANT PRICE: '.$auction["instant_price"].' KČ</h4></li>
-                    <li><h4>HIGHEST BID: '.$auction["highest_bid"].' KČ</h4></li>                    
+                    <li><h4>HIGHEST BID: '.$auction["highest_bid"].' KČ</h4></li>
                     <li><h4>MIN BID: '.$auction["min_bid"].' KČ</h4></li>
                     <li><h4>HIGHEST BIDDER: '.$auction["highest_bidder"].'</h4></li>
                     <li><h4>STATUS: <span style="color: '.getColor($auction["status"]).'">'.$auction["status"].'</span></h4></li>
@@ -107,8 +104,6 @@ foreach ($data['joined_auctions'] as $ja){
             $auction_organizator = $this->db->selectByColumnName('user','user_id',$auction['organizator_id'],'username')[0]['username'];
             $auction_owner = $this->db->selectByColumnName('user','user_id',$auction['owner_id'],'username')[0]['username'];
             $won = ($auction['highest_bidder'] == $_SESSION['username']) ? "WON" : "LOST";
-            $won = ($auction['organizator_id'] ==  $_SESSION['user_id'])? "FINISHED":$won;
-            $won = ($auction['owner_id'] ==  $_SESSION['user_id'])? "OWNED":$won;
             echo '
             <div class="info">
                 <img class ="pic" src="' . $auction['image'] . '">
@@ -129,5 +124,3 @@ foreach ($data['joined_auctions'] as $ja){
     ?>
     </div>
 </div>
-
-

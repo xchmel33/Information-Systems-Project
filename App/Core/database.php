@@ -10,7 +10,7 @@ class database
     public $query_count = 0;
 
     public function __construct() {
-	
+
 		$this->connection = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
         if ($this->connection->connect_error) {
             $this->error('Failed to connect to MySQL - ' . $this->connection->connect_error);
@@ -165,7 +165,7 @@ class database
             $sql .= "'".$column_value."',";
         }
         $sql = substr($sql,0,-1).")";
-        //echo $sql;
+
         return (bool)$this->query($sql);
     }
 

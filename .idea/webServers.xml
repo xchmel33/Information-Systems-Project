@@ -2,8 +2,12 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="4d1ac33c-3a5f-467b-ada5-d3c88bb679bc" name="localhost" url="http://localhost/">
-        <fileTransfer mountedRoot="C:\xampp\htdocs" accessType="MOUNT" port="0" />
+      <webServer id="3601df4f-bfa1-4c42-91b4-cd6a76b7d788" name="eva" url="https://www.stud.fit.vutbr.cz/~xchmel33/WEBBIDS/">
+        <fileTransfer rootFolder="/homes/eva/xc/xchmel33/WWW/" accessType="SFTP" host="eva.fit.vutbr.cz" port="22" sshConfigId="4c6445dd-865b-46af-bd3c-79d27b79f615" sshConfig="xchmel33@eva.fit.vutbr.cz:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
       </webServer>
       <webServer id="472b6477-8b8b-435a-ad3b-aedf4d296ea7" name="ftpx.forpsi.com" url="http://ftpx.forpsi.com">
         <fileTransfer rootFolder="/www" host="ftpx.forpsi.com" port="21">

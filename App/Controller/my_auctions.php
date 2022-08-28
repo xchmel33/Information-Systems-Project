@@ -19,7 +19,7 @@ class my_auctions extends controller
         if (isset($_POST['set_instant'])){
             $this->db->update('auction',['instant_price'],[$_POST['instant_price']],'auction_id',$_POST['auction_id']);
         }
-        if (isset($_POST['instant_buy'])){
+        if (isset($_POST['buy_instant'])){
             $this->db->update('auction_user',['user_bid'],[$_POST['instant_price']],'auction_id',$_POST['auction_id']);
         }
 

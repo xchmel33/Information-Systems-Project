@@ -4,15 +4,21 @@ define('HTTPS_SERVER','http://webbids.cz');
 define('PATH_MODEL','App/Model/');
 define('PATH_CONTROLLER','App/Controller/');
 define('PATH_CORE','App/Core/');
-define('PATH_VIEW','App/View/');
-define('PATH_TEMPLATE',PATH_VIEW.'Template/');
-define('PATH_JAVASCRIPT',PATH_VIEW.'Javascript/');
-define('PATH_STYLESHEET',PATH_VIEW.'Stylesheet/');
-define('PATH_IMAGE','Data/img/');
+define('PATH_TEMPLATE','App/View/Template/');
+define('PATH_JAVASCRIPT','Data/Javascript/');
+define('PATH_STYLESHEET','Data/Stylesheet/');
+define('PATH_IMAGE','Data/Image/');
 
 /** HEADER & FOOTER **/
 define("HEADER",'header.php');
 define("FOOTER",'footer.php');
+
+/** DATABASE **/
+define("DB_NAME",'f153755');
+define("DB_USER",'f153755');
+define("DB_PASSWORD",'password');
+define("DB_PORT",'');
+define("DB_HOST",'a045um.forpsi.com');
 
 /** SERVER DATABASE **/
 $server = 0;

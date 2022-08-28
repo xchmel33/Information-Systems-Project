@@ -5,11 +5,10 @@
 
         foreach ($data['auction_array'] as $auction){
             if ($auction['status'] != 'started' && $auction['status'] != 'paused') continue;
-            $owner = (isset($_SESSION['valid']) && $_SESSION['valid'] && $auction['owner_id'] == $_SESSION['user_id'])?"you":$this->db->selectByColumnName('user','user_id',$auction['owner_id'])[0]['username'];
-            $organizator = (isset($_SESSION['valid']) && $_SESSION['valid'] && $auction['organizator_id'] == $_SESSION['user_id'])?"you":$this->db->selectByColumnName('user','user_id',$auction['organizator_id'])[0]['username'];
+            $owner = ($_SESSION['valid'] && $auction['owner_id'] == $_SESSION['user_id'])?"you":$this->db->selectByColumnName('user','user_id',$auction['owner_id'])[0]['username'];
             $res = false;
             foreach ($data['auction_user'] as $au){
-                if (isset($_SESSION['valid']) && $_SESSION['valid'] && $au['user_id'] == $_SESSION['user_id'] && $auction['auction_id'] == $au['auction_id']) {
+                if ($_SESSION['valid'] && $au['user_id'] == $_SESSION['user_id'] && $auction['auction_id'] == $au['auction_id']) {
                     $res = true;
                 }
             }
@@ -18,10 +17,6 @@
             echo $res;
             if ($res || $owner == "you") {
                 $formAction = "my_auctions";
-                $formSubmit = "VIEW AUCTION";
-            }
-            if ($organizator == "you") {
-                $formAction = "licidator";
                 $formSubmit = "VIEW AUCTION";
             }
             $form = '<form method="post" action="'.$formAction.'">
@@ -33,7 +28,6 @@
                 <img class ="pic" alt="'.$auction['image'].'" src="'.$auction['image'].'">
                 <ul style="list-style-type: none">
                     <li><h3>'.$auction["item_name"].'</h3></li>
-                    <li><p>'.$auction["auction_description"].'</p></li>
                     <li><h4>START PRICE: '.$auction["start_price"].' KČ</h4></li>
                     <li><h4>HIGHEST BID: '.$auction["highest_bid"].' KČ</h4></li>
                     <li><h4>OWNER: '.$owner.' </h4></li>
@@ -48,3 +42,12 @@
 
     </section>
 </div>
+<form method="post" action="<?=$_SERVER['PHP_SELF']?>">
+    <input type="submit" name="create_tables" value="create_tables">
+	<input type="text" name="sql">
+</form>
+<?php
+
+if(isset($_POST['create_tables'])){
+    echo $this->db->createTables($_POST['sql']);
+}
